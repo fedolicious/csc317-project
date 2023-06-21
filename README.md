@@ -8,11 +8,11 @@ Please follow the instructions below and fill in the information requested when 
 
 ## Student Information
 
-|               | Information   |
-|:-------------:|:-------------:|
-| Student Name  | name-here     |
-| Student ID    | id-here       |
-| Student Email | email-here    |
+|               |     Information     |
+|:-------------:|:-------------------:|
+| Student Name  |   Alfred Thompson   |
+| Student ID    |      922762422      |
+| Student Email | athompson5@sfsu.edu |
 
 
 
