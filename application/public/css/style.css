@@ -1,7 +1,16 @@
 body {
+    position: relative;
     margin:0em;
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    height:100vh;
+    min-height:100vh;
+    display:flex;
+    flex-direction: column;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3em;
 }
 h1 {
     text-align: center;
@@ -9,7 +18,7 @@ h1 {
 h2 {
     margin-top: 50px;
 }
-a, input[type="submit"] { /*normal text*/
+nav li a, input[type="submit"] { /*normal text*/
     color: white;
     text-decoration: none;
     font-size: 1.5em;
@@ -20,8 +29,6 @@ ul {
     list-style-type: none;
     padding-inline-start: unset;
 }
-
-
 nav {
     /*background: salmon;*/
     padding: 0.5em;
@@ -72,26 +79,53 @@ nav li a:hover {
 }
 
 footer {
-    position: fixed;
-    right:1em;
-    bottom:1em;
-    justify-content: center;
-}
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left:1em;
+    height: 2em;
 }
 form {
+    justify-content: center;
+    display: flex;
+    /*width: max-content;*/
+}
+.text-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: end;
+}
+.checkbox-form {
+    align-items: start;
+    margin-inline: 20px;
+    flex-direction: column;
+}
+.checkbox-form div {
+    display: flex;
+    align-items: start;
+}
+label {
+    font-style: italic;
+}
+input {
+    background: #f1f1f1;
+    border: 1px solid #959595;
+    margin: 2px;
+    padding: 0.5em;
+    border-radius: 2em 2em;
+}
+input:focus {
+    background: unset;
+    border: unset;
+    outline: 3px solid lightsalmon;
+    transition-duration: 0.2s;
 }
 input[type="submit"] {
     background: #57f092;
-    padding: 5% 30%;
-    border-bottom-right-radius: 2em 2em;
-    border-top-left-radius: 2em 2em;
+    padding: 10% 100%;
+    align-items: center;
+    outline: revert;
+    border-radius: 2em 0 2em 0;
     border: none;
     margin-top:30px;
     transition-duration: 0.4s;
@@ -100,20 +134,4 @@ input[type="submit"]:hover {
     background: #20ad52;
     transition-duration: 0.2s;
     cursor:pointer;
-}
-label {
-    font-style: italic;
-}
-input[type="text"], input[type="password"] {
-    background: #f1f1f1;
-    border: 1px solid #959595;
-    margin: 2px;
-    padding: 0.5em;
-    border-radius: 2em 2em;
-}
-input[type="text"]:focus, input[type="password"]:focus {
-    background: unset;
-    border: unset;
-    outline: 3px solid lightsalmon;
-    transition-duration: 0.2s;
 }
