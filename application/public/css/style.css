@@ -6,8 +6,10 @@ body {
 h1 {
     text-align: center;
 }
-a {
-    /*color: #00B7FF;*/
+h2 {
+    margin-top: 50px;
+}
+a, input[type="submit"] { /*normal text*/
     color: white;
     text-decoration: none;
     font-size: 1.5em;
@@ -53,6 +55,7 @@ nav li a {
     color:black;
     text-align: center;
     border-radius: 1em;
+    transition-duration: 0.4s;
 }
 @media only screen and (max-width: 800px) {
     nav li a {
@@ -83,4 +86,34 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+input[type="submit"] {
+    background: #57f092;
+    padding: 5% 30%;
+    border-bottom-right-radius: 2em 2em;
+    border-top-left-radius: 2em 2em;
+    border: none;
+    margin-top:30px;
+    transition-duration: 0.4s;
+}
+input[type="submit"]:hover {
+    background: #20ad52;
+    transition-duration: 0.2s;
+    cursor:pointer;
+}
+label {
+    font-style: italic;
+}
+input[type="text"], input[type="password"] {
+    background: #f1f1f1;
+    border: 1px solid #959595;
+    margin: 2px;
+    padding: 0.5em;
+    border-radius: 2em 2em;
+}
+input[type="text"]:focus, input[type="password"]:focus {
+    background: unset;
+    border: unset;
+    outline: 3px solid lightsalmon;
+    transition-duration: 0.2s;
 }
