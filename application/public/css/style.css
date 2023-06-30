@@ -39,13 +39,6 @@ nav ul {
         grid-template-columns: unset;
     }
 }
-/*nav li {*/
-/*    padding: 0.4em;*/
-/*    border: 2px solid black;*/
-/*    background: salmon;*/
-/*    text-align: center;*/
-/*    border-radius: 1em;*/
-/*}*/
 nav li {
     justify-content: center;
     align-items: center;
@@ -55,10 +48,24 @@ nav li a {
     display: block;
     width: 85%;
     padding: 0.4em;
-    border: 2px solid black;
-    background: salmon;
+    background: white;
+    border: 2px solid lightgray;
+    color:black;
     text-align: center;
     border-radius: 1em;
+}
+@media only screen and (max-width: 800px) {
+    nav li a {
+        background: salmon;
+        border: 2px solid salmon;
+        color:white;
+    }
+}
+nav li a:hover {
+    background: salmon;
+    border: 2px solid salmon;
+    color:white;
+    transition-duration: 0.2s;
 }
 
 footer {
@@ -66,4 +73,14 @@ footer {
     right:1em;
     bottom:1em;
     justify-content: center;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
