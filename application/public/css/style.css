@@ -18,7 +18,7 @@ h1 {
 h2 {
     margin-top: 50px;
 }
-nav li a, input[type="submit"] { /*normal text*/
+nav li a, input[type="submit"], label[for="upload"] { /*normal text*/
     color: white;
     text-decoration: none;
     font-size: 1.5em;
@@ -85,7 +85,7 @@ footer {
     left:1em;
     height: 2em;
 }
-form {
+.submit-form {
     justify-content: center;
     display: flex;
     /*width: max-content;*/
@@ -104,6 +104,9 @@ form {
     display: flex;
     align-items: start;
 }
+.file-form {
+    margin:20px;
+}
 label {
     font-style: italic;
 }
@@ -114,24 +117,40 @@ input {
     padding: 0.5em;
     border-radius: 2em 2em;
 }
-input:focus {
-    background: unset;
-    border: unset;
-    outline: 3px solid lightsalmon;
-    transition-duration: 0.2s;
-}
-input[type="submit"] {
-    background: #57f092;
-    padding: 10% 100%;
-    align-items: center;
-    outline: revert;
-    border-radius: 2em 0 2em 0;
-    border: none;
-    margin-top:30px;
-    transition-duration: 0.4s;
-}
-input[type="submit"]:hover {
-    background: #20ad52;
-    transition-duration: 0.2s;
-    cursor:pointer;
-}
+    input:focus {
+        background: unset;
+        border: unset;
+        outline: 3px solid lightsalmon;
+        transition-duration: 0.2s;
+    }
+    input[type="submit"], label[for="upload"] {
+        align-items: center;
+        outline: revert;
+        border: none;
+        border-radius: 2em 0 2em 0;
+        margin-top:30px;
+        transition-duration: 0.4s;
+    }
+    input[type="submit"] {
+        background: #57f092;
+        padding: 0.3em 3em;
+    }
+    input[type="submit"]:hover {
+        background: #20ad52;
+        transition-duration: 0.2s;
+        cursor:pointer;
+    }
+    label[for="upload"] {
+        background: #83aeff;
+        border-radius: 0.3em;
+        padding: 0.3em 0.4em;
+        margin-top: 50px;
+    }
+    label[for="upload"]:hover {
+        background: #4764ce;
+        transition-duration: 0.2s;
+        cursor:pointer;
+    }
+    input[type="file"] {
+        display: none;
+    }
