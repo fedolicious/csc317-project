@@ -1,8 +1,196 @@
+:root {
+    --nice-grey:#f1f1f1;
+    --another-grey:#959595;
+}
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    position: relative;
+    margin:0em;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction: column;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3em;
+}
+h1 {
+    text-align: center;
+}
+h2 {
+    margin-top: 50px;
+}
+nav li a, input[type="submit"], label[for="upload"] { /*normal text*/
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: bold;
+}
+ul {
+    list-style-type: none;
+    padding-inline-start: unset;
+}
+nav {
+    /*background: salmon;*/
+    padding: 0.5em;
+}
+nav ul {
+    display: grid;
+    grid-column-gap: 2em;
+    grid-row-gap:0.4em;
+    grid-template-columns: 100%;
+    margin:unset;
+}
+@media only screen and (min-width: 800px) {
+    nav ul {
+        display: grid;
+        grid-auto-flow: column;
+        margin:unset;
+        grid-template-columns: unset;
+    }
+}
+nav li {
+    justify-content: center;
+    align-items: center;
+}
+nav li a {
+    margin:auto;
+    display: block;
+    width: 85%;
+    padding: 0.4em;
+    background: white;
+    border: 2px solid lightgray;
+    color:black;
+    text-align: center;
+    border-radius: 1em;
+    transition-duration: 0.4s;
+}
+@media only screen and (max-width: 800px) {
+    nav li a {
+        background: salmon;
+        border: 2px solid salmon;
+        color:white;
+    }
+}
+nav li a:hover {
+    background: salmon;
+    border: 2px solid salmon;
+    color:white;
+    transition-duration: 0.2s;
 }
 
-a {
-  color: #00B7FF;
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left:1em;
+    height: 2em;
+}
+.submit-form {
+    justify-content: center;
+    display: flex;
+    /*width: max-content;*/
+}
+.text-form {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.checkbox-form {
+    align-items: start;
+    margin-inline: 20px;
+    flex-direction: column;
+}
+.checkbox-form div {
+    display: flex;
+    align-items: start;
+}
+.file-form {
+    margin:20px;
+}
+label {
+    font-style: italic;
+}
+input {
+    background: var(--nice-grey);
+    border: 1px solid var(--another-grey);
+    margin: 2px;
+    padding: 0.5em;
+    border-radius: 2em 2em;
+}
+    input:focus {
+        background: unset;
+        border: unset;
+        outline: 3px solid lightsalmon;
+        transition-duration: 0.2s;
+    }
+    input[type="submit"], label[for="upload"] {
+        align-items: center;
+        outline: revert;
+        border: none;
+        border-radius: 2em 0 2em 0;
+        margin-top:30px;
+        transition-duration: 0.4s;
+    }
+    input[type="submit"] {
+        background: #57f092;
+        padding: 0.3em 3em;
+    }
+    input[type="submit"]:hover {
+        background: #20ad52;
+        transition-duration: 0.2s;
+        cursor:pointer;
+    }
+    label[for="upload"] {
+        background: #83aeff;
+        border-radius: 0.3em;
+        padding: 0.3em 0.4em;
+        margin-top: 50px;
+    }
+    label[for="upload"]:hover {
+        background: #4764ce;
+        transition-duration: 0.2s;
+        cursor:pointer;
+    }
+    input[type="file"] {
+        display: none;
+    }
+#videoElements {
+    display:flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
+    #videoPlayer {
+        width: 100%;
+        height: auto;
+    }
+        #videoTitle, #videoAuthor, #videoDate {
+        margin:unset;
+        margin-left: 0.5em;
+    }
+#commentElements {
+    background: var(--nice-grey);
+    width: 100%;
+}
+    #commentElements ul {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .commentMessage {
+        width: 90%;
+        border-radius: 1em;
+        background: #cecece;
+        padding: 1em;
+        margin-bottom: 0.3em;
+    }
+    .commentMessage p {
+        margin:unset;
+        text-align: justify;
+    }
+#videoTitle, #commentsTitle {
+    margin: 0.3em;
 }
