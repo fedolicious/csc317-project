@@ -1,3 +1,7 @@
+:root {
+    --nice-grey:#f1f1f1;
+    --another-grey:#959595;
+}
 body {
     position: relative;
     margin:0em;
@@ -111,8 +115,8 @@ label {
     font-style: italic;
 }
 input {
-    background: #f1f1f1;
-    border: 1px solid #959595;
+    background: var(--nice-grey);
+    border: 1px solid var(--another-grey);
     margin: 2px;
     padding: 0.5em;
     border-radius: 2em 2em;
@@ -154,3 +158,39 @@ input {
     input[type="file"] {
         display: none;
     }
+#videoElements {
+    display:flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
+    #videoPlayer {
+        width: 100%;
+        height: auto;
+    }
+        #videoTitle, #videoAuthor, #videoDate {
+        margin:unset;
+        margin-left: 0.5em;
+    }
+#commentElements {
+    background: var(--nice-grey);
+    width: 100%;
+}
+    #commentElements ul {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .commentMessage {
+        width: 90%;
+        border-radius: 1em;
+        background: #cecece;
+        padding: 1em;
+        margin-bottom: 0.3em;
+    }
+    .commentMessage p {
+        margin:unset;
+        text-align: justify;
+    }
+#videoTitle, #commentsTitle {
+    margin: 0.3em;
+}
