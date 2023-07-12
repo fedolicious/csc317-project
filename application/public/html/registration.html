@@ -25,37 +25,40 @@
     <header>
         <h2>Register Account</h2>
     </header>
-    <form class="text-form">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username">
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email">
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password">
-        </div>
-        <div>
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword">
-        </div>
-    </form>
-    <form class="checkbox-form">
-        <div>
-            <input type="checkbox" id="13plus">
-            <label for="13plus">I am 13+ years of age</label>
-        </div>
-        <div>
-            <input type="checkbox" id="TOS">
-            <label for="TOS">I have read and accepted the <a href="tos.html">Terms of Service and Privacy
-                Rules</a></label>
-        </div>
-    </form>
     <form>
-        <input type="submit" value="Register">
+        <div class="text-form">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email">
+                <input type="submit" hidden id="email2">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password">
+            </div>
+            <div>
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword">
+            </div>
+        </div>
+        <div class="checkbox-form">
+            <div>
+                <input type="checkbox" id="13plus" required>
+                <label for="13plus">I am 13+ years of age</label>
+            </div>
+            <div>
+                <input type="checkbox" id="TOS" required>
+                <label for="TOS">I have read and accepted the <a href="tos.html">Terms of Service and Privacy
+                    Rules</a></label>
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Register">
+        </div>
     </form>
 </main>
 <footer>Alfred Thompson (922762422) &copy; 2023</footer>

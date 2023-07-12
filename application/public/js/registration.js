@@ -7,13 +7,15 @@ document.getElementById("username").addEventListener("input", function (event) {
 
     let alphanumCharCount = 0;
     for(let char of input) {
-        console.log(char.match(/[a-zA-Z0-9]/));
         if(char.match(/[a-zA-Z0-9]/)) { alphanumCharCount ++; }
         if(alphanumCharCount >= 3) {
             //3+ alphanum characters
             break;
         }
     }
+})
+document.getElementById("email2").addEventListener("input", function (event) {
+    console.log(event);
 })
 let password;
 document.getElementById("password").addEventListener("input", function (event) {
