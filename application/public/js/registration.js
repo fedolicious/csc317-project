@@ -1,19 +1,27 @@
 //REGISTRATION REQUIREMENTS
+let nameBegins = false;
+let nameAlphanum = false;
 document.getElementById("username").addEventListener("input", function(event) {
     const input = event.target.value;
-    if(input.match(/^[a-zA-Z]/)) {
-        //begins w/ a letter
-    }
+    if(input.match(/^[a-zA-Z]/)) { nameBegins = true; }
 
     let alphanumCharCount = 0;
     for(let char of input) {
         if(char.match(/[a-zA-Z0-9]/)) { alphanumCharCount++; }
         if(alphanumCharCount >= 3) {
-            //3+ alphanum characters
+            nameAlphanum = true;
             break;
         }
     }
-    document.getElementById("registration-input-strength").classList.toggle("input-strength-hidden");
+    updateInputStrengthText();
+    // document.getElementById("registration-input-strength").classList.toggle("input-strength-hidden");
+})
+function updateInputStrengthText() {
+    document.getElementById("below-bar").textContent = `name begins: ${nameBegins}\nname alphanum: ${nameAlphanum}`;
+}
+document.getElementById("username").addEventListener("focus", function(event) {
+    document.getElementById("registration-input-strength").classList.remove("input-strength-hidden");
+    updateInputStrengthText();
 })
 let password;
 document.getElementById("password").addEventListener("input", function(event) {

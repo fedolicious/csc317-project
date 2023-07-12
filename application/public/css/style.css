@@ -119,6 +119,22 @@ footer {
     .file-input {
         margin:20px;
     }
+    .input-strength span {
+        background: var(--nice-grey);
+        box-sizing: border-box;
+        display: block;
+        background-clip: content-box;
+        height: 1em;
+        width:100%;
+    }
+    #progress {
+        background: limegreen;
+        box-sizing: border-box;
+        display: block;
+        background-clip: content-box;
+        height: 1em;
+        width:70%;
+    }
     .input-strength-container {
         display: flex;
         flex-direction: column-reverse;
@@ -126,8 +142,10 @@ footer {
     }
     .input-strength {
         border-bottom: solid 2px var(--another-grey);
-        color: red;
-        max-height: 50px;
+        font-style: italic;
+        font-weight: bold;
+
+        max-height: 100px;
         padding-bottom: 1em;
         white-space: nowrap;
         overflow: hidden;
@@ -146,9 +164,11 @@ footer {
         .input-strength {
             border-bottom: unset;
             border-left: solid 2px var(--another-grey);
-            color: red;
+            font-style: italic;
+            font-weight: bold;
+
             max-height: unset;
-            max-width: 50px;
+            max-width: 120px;
             padding-left: 1em;
             padding-bottom: unset;
             white-space: nowrap;
