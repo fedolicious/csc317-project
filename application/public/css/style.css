@@ -1,6 +1,10 @@
 :root {
     --nice-grey:#f1f1f1;
     --another-grey:#959595;
+    --minty-green:#57f092;
+    --darker-green:#20ad52;
+    --minty-blue:#83aeff;
+    --darker-blue:#4764ce;
 }
 body {
     position: relative;
@@ -101,6 +105,14 @@ footer {
 /*    display: flex;*/
 /*    !*width: max-content;*!*/
 /*}*/
+.requirement-unmet {
+    font-style: italic;
+    margin:unset;
+    color: var(--another-grey);
+}
+.requirement-met {
+    color: var(--darker-green);
+}
 .text-input {
     display: flex;
     flex-direction: column;
@@ -120,6 +132,7 @@ footer {
         margin:20px;
     }
     .input-strength span {
+        margin-bottom: 1em;
         background: var(--nice-grey);
         box-sizing: border-box;
         display: block;
@@ -127,25 +140,28 @@ footer {
         height: 1em;
         width:100%;
     }
+    .input-strength div {
+        display:flex;
+    }
+    #strength-description {
+        padding-left:6px;
+        font-weight: bold;
+    }
     #progress {
-        background: limegreen;
         box-sizing: border-box;
         display: block;
         background-clip: content-box;
-        height: 1em;
-        width:70%;
+        height: 100%;
+        transition-duration: 0.5s;
     }
-    .input-strength-container {
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: stretch;
-    }
+    /*.input-strength-container {*/
+    /*    display: flex;*/
+    /*    flex-direction: column-reverse;*/
+    /*    align-items: stretch;*/
+    /*}*/
     .input-strength {
         border-bottom: solid 2px var(--another-grey);
-        font-style: italic;
-        font-weight: bold;
-
-        max-height: 100px;
+        max-height: 300px;
         padding-bottom: 1em;
         white-space: nowrap;
         overflow: hidden;
@@ -157,18 +173,15 @@ footer {
         border: white;
         transition-duration: 0.5s;
     }
-    @media only screen and (min-width: 650px) {
+    @media only screen and (min-width: 800px) {
         .input-strength-container {
             flex-direction: row;
         }
         .input-strength {
             border-bottom: unset;
             border-left: solid 2px var(--another-grey);
-            font-style: italic;
-            font-weight: bold;
-
             max-height: unset;
-            max-width: 120px;
+            max-width: 400px;
             padding-left: 1em;
             padding-bottom: unset;
             white-space: nowrap;
@@ -208,11 +221,11 @@ input {
         transition-duration: 0.4s;
     }
     input[type="submit"] {
-        background: #57f092;
+        background: var(--minty-green);
         padding: 0.3em 3em;
     }
     input[type="submit"]:hover {
-        background: #20ad52;
+        background: var(--darker-green);
         transition-duration: 0.2s;
         cursor: pointer;
     }
@@ -221,13 +234,13 @@ input {
         cursor: unset;
     }
     label[for="upload"] {
-        background: #83aeff;
+        background: var(--minty-blue);
         border-radius: 0.3em;
         padding: 0.3em 0.4em;
         margin-top: 50px;
     }
     label[for="upload"]:hover {
-        background: #4764ce;
+        background: var(--darker-blue);
         transition-duration: 0.2s;
         cursor: pointer;
     }

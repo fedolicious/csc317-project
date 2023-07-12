@@ -1,58 +1,74 @@
-//REGISTRATION REQUIREMENTS
-let nameBegins = false;
+//VALIDATE USERNAME
 let nameAlphanum = false;
 document.getElementById("username").addEventListener("input", function(event) {
     const input = event.target.value;
-    if(input.match(/^[a-zA-Z]/)) { nameBegins = true; }
+    validateRequirement("name-begins", input.match(/^[a-zA-Z]/),false);
 
     let alphanumCharCount = 0;
     for(let char of input) {
         if(char.match(/[a-zA-Z0-9]/)) { alphanumCharCount++; }
         if(alphanumCharCount >= 3) {
-            nameAlphanum = true;
             break;
         }
     }
-    updateInputStrengthText();
+    validateRequirement("name-alphanum",alphanumCharCount >= 3,false);
+    //updateInputStrengthText();
     // document.getElementById("registration-input-strength").classList.toggle("input-strength-hidden");
 })
-function updateInputStrengthText() {
-    document.getElementById("below-bar").textContent = `name begins: ${nameBegins}\nname alphanum: ${nameAlphanum}`;
+let totalStrength = 0;
+let passwordStrength = 0;
+function validateRequirement(id, condition, validatingPassword) {
+    let element = document.getElementById(id).classList;
+    if(condition) {
+        totalStrength += element.contains("requirement-met")?0:1;
+        passwordStrength += !validatingPassword||element.contains("requirement-met")?0:1;
+        element.add("requirement-met");
+    } else {
+        totalStrength -= element.contains("requirement-met")?1:0;
+        passwordStrength -= validatingPassword&&element.contains("requirement-met")?1:0;
+        element.remove("requirement-met");
+    }
+    document.getElementById("registration-submit").disabled = totalStrength < 7;
 }
-document.getElementById("username").addEventListener("focus", function(event) {
-    document.getElementById("registration-input-strength").classList.remove("input-strength-hidden");
-    updateInputStrengthText();
-})
+//VALIDATE PASSWORD
 let password;
 document.getElementById("password").addEventListener("input", function(event) {
     password = event.target.value;
-    if(password.length >= 8) {
-        //8+ characters
-    }
-    if(password.match(/[A-Z]/)) {
-        //at least 1 uppercase
-    }
-    if(password.match(/[0-9]/)) {
-        //at least 1 number
-    }
-    if(password.match(/[\/*\-+!@#$^&~[\]]/)) {
-        //at least 1 special character
-    }
-    comparePassword();
+    validateRequirement("pass-length", password.length >= 8,true);
+    validateRequirement("pass-uppercase",password.match(/[A-Z]/),true);
+    validateRequirement("pass-number",password.match(/[0-9]/),true);
+    validateRequirement("pass-special",password.match(/[\/*\-+!@#$^&~[\]]/),true);
+    validateRequirement("pass-confirm",password === confirmPassword,true);
+    updateStrength();
 })
 let confirmPassword;
 document.getElementById("confirmPassword").addEventListener("input", function(event) {
     confirmPassword = event.target.value;
-    comparePassword();
+    validateRequirement("pass-confirm",password === confirmPassword,true);
+    updateStrength();
 })
-function comparePassword() {
-    console.log(password === confirmPassword);
+//PASSWORD STRENGTH
+const strengthStrings = ["Pathetic","Still Pretty Bad","Better","Actually Pretty Good","Near Perfection","GODLY"];
+const strengthColours = ["red","orange","var(--minty-green)","var(--minty-blue)","#9f41d1","#ffff52"];
+updateStrength();
+function updateStrength() {
+    document.getElementById("strength-description").textContent = strengthStrings[passwordStrength];
+    document.getElementById("progress").style.width = passwordStrength*19+5+"%";
+    document.getElementById("progress").style.background = strengthColours[passwordStrength] ;
 }
-//INPUT STRENGTH
+//TOGGLE INPUT VALIDATION MENU
+const ids = ["username","password","confirmPassword"];
+for(i = 0; i < 2*ids.length; i++) {
+    document.getElementById(ids[i%ids.length]).addEventListener(i%2===0?"focusin":"focusout", function(){
+        document.getElementById("registration-input-strength").classList.toggle("input-strength-hidden");
+    })
+}
 //REGISTRATION SUBMISSION
 document.getElementById("registration-form").addEventListener("submit", function(event) {
-    if(false){
+    console.log("yoyoyo!");
+    if(totalStrength >= 7){
         event.target.submit();
+        // document.getElementById("registration-submit")
     }
     event.preventDefault();
 })
