@@ -96,28 +96,50 @@ footer {
 /*    align-items: center;*/
 /*    padding-bottom: 3em;*/
 /*}*/
-.submit-form {
-    justify-content: center;
-    display: flex;
-    /*width: max-content;*/
-}
-.text-form {
+/*.submit-form {*/
+/*    justify-content: center;*/
+/*    display: flex;*/
+/*    !*width: max-content;*!*/
+/*}*/
+.text-input {
     display: flex;
     flex-direction: column;
     align-items: end;
+    padding: 1em;
 }
-.checkbox-form {
-    align-items: start;
-    margin-inline: 20px;
-    flex-direction: column;
-}
-.checkbox-form div {
-    display: flex;
-    align-items: start;
-}
-.file-form {
-    margin:20px;
-}
+    .checkbox-input {
+        align-items: start;
+        margin-inline: 20px;
+        flex-direction: column;
+    }
+    .checkbox-input div {
+        display: flex;
+        align-items: start;
+    }
+    .file-input {
+        margin:20px;
+    }
+    .input-strength-container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+    .input-strength {
+        border-bottom: solid 2px var(--another-grey);
+        color: red;
+        padding: 1em;
+        /*height: vmax;*/
+        /*flex-grow: inherit;*/
+    }
+    @media only screen and (min-width: 650px) {
+        .input-strength-container {
+            flex-direction: row;
+        }
+        .input-strength {
+            border-bottom: unset;
+            border-left: solid 2px var(--another-grey);
+        }
+    }
 label {
     font-style: italic;
 }
@@ -149,7 +171,11 @@ input {
     input[type="submit"]:hover {
         background: #20ad52;
         transition-duration: 0.2s;
-        cursor:pointer;
+        cursor: pointer;
+    }
+    input[type="submit"]:disabled {
+        background: var(--another-grey);
+        cursor: unset;
     }
     label[for="upload"] {
         background: #83aeff;
@@ -160,7 +186,7 @@ input {
     label[for="upload"]:hover {
         background: #4764ce;
         transition-duration: 0.2s;
-        cursor:pointer;
+        cursor: pointer;
     }
     input[type="file"] {
         display: none;

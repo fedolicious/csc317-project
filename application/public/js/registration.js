@@ -1,5 +1,5 @@
-//used https://regex101.com/ for regex help
-document.getElementById("username").addEventListener("input", function (event) {
+//REGISTRATION REQUIREMENTS
+document.getElementById("username").addEventListener("input", function(event) {
     const input = event.target.value;
     if(input.match(/^[a-zA-Z]/)) {
         //begins w/ a letter
@@ -7,18 +7,15 @@ document.getElementById("username").addEventListener("input", function (event) {
 
     let alphanumCharCount = 0;
     for(let char of input) {
-        if(char.match(/[a-zA-Z0-9]/)) { alphanumCharCount ++; }
+        if(char.match(/[a-zA-Z0-9]/)) { alphanumCharCount++; }
         if(alphanumCharCount >= 3) {
             //3+ alphanum characters
             break;
         }
     }
 })
-document.getElementById("email2").addEventListener("input", function (event) {
-    console.log(event);
-})
 let password;
-document.getElementById("password").addEventListener("input", function (event) {
+document.getElementById("password").addEventListener("input", function(event) {
     password = event.target.value;
     if(password.length >= 8) {
         //8+ characters
@@ -35,10 +32,17 @@ document.getElementById("password").addEventListener("input", function (event) {
     comparePassword();
 })
 let confirmPassword;
-document.getElementById("confirmPassword").addEventListener("input", function (event) {
+document.getElementById("confirmPassword").addEventListener("input", function(event) {
     confirmPassword = event.target.value;
     comparePassword();
 })
 function comparePassword() {
     console.log(password === confirmPassword);
 }
+//REGISTRATION SUBMISSION
+document.getElementById("registration-form").addEventListener("submit", function(event) {
+    if(false){
+        event.target.submit();
+    }
+    event.preventDefault();
+})
