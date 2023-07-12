@@ -127,9 +127,17 @@ footer {
     .input-strength {
         border-bottom: solid 2px var(--another-grey);
         color: red;
-        padding: 1em;
-        /*height: vmax;*/
-        /*flex-grow: inherit;*/
+        max-height: 50px;
+        padding-bottom: 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        transition-duration: 0.5s;
+    }
+    .input-strength-hidden {
+        max-height: 0;
+        padding: 0;
+        border: white;
+        transition-duration: 0.5s;
     }
     @media only screen and (min-width: 650px) {
         .input-strength-container {
@@ -138,6 +146,21 @@ footer {
         .input-strength {
             border-bottom: unset;
             border-left: solid 2px var(--another-grey);
+            color: red;
+            max-height: unset;
+            max-width: 50px;
+            padding-left: 1em;
+            padding-bottom: unset;
+            white-space: nowrap;
+            overflow: hidden;
+            transition-duration: 0.5s;
+        }
+        .input-strength-hidden {
+            max-height: unset;
+            max-width: 0;
+            padding: 0;
+            border: white;
+            transition-duration: 0.5s;
         }
     }
 label {

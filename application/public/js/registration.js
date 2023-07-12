@@ -13,6 +13,7 @@ document.getElementById("username").addEventListener("input", function(event) {
             break;
         }
     }
+    document.getElementById("registration-input-strength").classList.toggle("input-strength-hidden");
 })
 let password;
 document.getElementById("password").addEventListener("input", function(event) {
@@ -39,6 +40,7 @@ document.getElementById("confirmPassword").addEventListener("input", function(ev
 function comparePassword() {
     console.log(password === confirmPassword);
 }
+//INPUT STRENGTH
 //REGISTRATION SUBMISSION
 document.getElementById("registration-form").addEventListener("submit", function(event) {
     if(false){
