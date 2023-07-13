@@ -31,24 +31,25 @@ function validateRequirement(id, condition, validatingPassword) {
     document.getElementById("registration-submit").disabled = totalStrength < 7;
 }
 //VALIDATE PASSWORD
-let password;
+let password = "";
 document.getElementById("password").addEventListener("input", function(event) {
     password = event.target.value;
     validateRequirement("pass-length", password.length >= 8,true);
     validateRequirement("pass-uppercase",password.match(/[A-Z]/),true);
     validateRequirement("pass-number",password.match(/[0-9]/),true);
     validateRequirement("pass-special",password.match(/[\/*\-+!@#$^&~[\]]/),true);
-    validateRequirement("pass-confirm",password === confirmPassword,true);
+    validateRequirement("pass-confirm",password.length > 0 && password === confirmPassword,true);
     updateStrength();
 })
-let confirmPassword;
+let confirmPassword = "";
 document.getElementById("confirmPassword").addEventListener("input", function(event) {
     confirmPassword = event.target.value;
-    validateRequirement("pass-confirm",password === confirmPassword,true);
+    console.log(password.length);
+    validateRequirement("pass-confirm",password.length > 0 && password === confirmPassword,true);
     updateStrength();
 })
 //PASSWORD STRENGTH
-const strengthStrings = ["Pathetic","Still Pretty Bad","Better","Actually Pretty Good","Near Perfection","GODLY"];
+const strengthStrings = ["Pathetic","Still Pretty Bad","Better","Actually Pretty Good","Near Perfection","GODLIKE"];
 const strengthColours = ["red","orange","var(--minty-green)","var(--minty-blue)","#9f41d1","#ffff52"];
 updateStrength();
 function updateStrength() {
