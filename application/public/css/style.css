@@ -1,6 +1,12 @@
 :root {
     --nice-grey:#f1f1f1;
     --another-grey:#959595;
+    --minty-green:#57f092;
+    --darker-green:#20ad52;
+    --minty-blue:#83aeff;
+    --darker-blue:#4764ce;
+    --salmon:salmon;
+    --lighter-salmon: #ffb0a6;
 }
 body {
     position: relative;
@@ -10,10 +16,12 @@ body {
     display:flex;
     flex-direction: column;
 }
-main {
+main, form {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+form {
     padding-bottom: 3em;
 }
 h1 {
@@ -34,7 +42,7 @@ ul {
     padding-inline-start: unset;
 }
 nav {
-    /*background: salmon;*/
+    /*background: var(--salmon);*/
     padding: 0.5em;
 }
 nav ul {
@@ -70,14 +78,14 @@ nav li a {
 }
 @media only screen and (max-width: 800px) {
     nav li a {
-        background: salmon;
-        border: 2px solid salmon;
+        background: var(--salmon);
+        border: 2px solid var(--salmon);
         color:white;
     }
 }
 nav li a:hover {
-    background: salmon;
-    border: 2px solid salmon;
+    background: var(--salmon);
+    border: 2px solid var(--salmon);
     color:white;
     transition-duration: 0.2s;
 }
@@ -85,32 +93,111 @@ nav li a:hover {
 footer {
     position: absolute;
     bottom: 0;
-    width: 100%;
     left:1em;
     height: 2em;
 }
-.submit-form {
-    justify-content: center;
-    display: flex;
-    /*width: max-content;*/
+/*form {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    padding-bottom: 3em;*/
+/*}*/
+/*.submit-form {*/
+/*    justify-content: center;*/
+/*    display: flex;*/
+/*    !*width: max-content;*!*/
+/*}*/
+.requirement-unmet {
+    font-style: italic;
+    margin:unset;
+    color: var(--another-grey);
 }
-.text-form {
+.requirement-met {
+    color: var(--darker-green);
+}
+.text-input {
     display: flex;
     flex-direction: column;
     align-items: end;
+    padding: 1em;
 }
-.checkbox-form {
-    align-items: start;
-    margin-inline: 20px;
-    flex-direction: column;
-}
-.checkbox-form div {
-    display: flex;
-    align-items: start;
-}
-.file-form {
-    margin:20px;
-}
+    .checkbox-input {
+        align-items: start;
+        margin-inline: 20px;
+        flex-direction: column;
+    }
+    .checkbox-input div {
+        display: flex;
+        align-items: start;
+    }
+    .file-input {
+        margin:20px;
+    }
+    .input-strength span {
+        margin-bottom: 1em;
+        background: var(--nice-grey);
+        box-sizing: border-box;
+        display: block;
+        background-clip: content-box;
+        height: 1em;
+        width:100%;
+    }
+    .input-strength div {
+        display:flex;
+    }
+    #strength-description {
+        padding-left:6px;
+        font-weight: bold;
+    }
+    #progress {
+        box-sizing: border-box;
+        display: block;
+        background-clip: content-box;
+        height: 100%;
+        transition-duration: 0.5s;
+    }
+    .input-strength-container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+    .input-strength {
+        border-bottom: solid 2px var(--another-grey);
+        max-height: 300px;
+        padding-bottom: 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        transition-duration: 0.5s;
+    }
+    .input-strength-hidden {
+        max-height: 0;
+        padding: 0;
+        border: white;
+        transition-duration: 0.5s;
+    }
+    @media only screen and (min-width: 800px) {
+        .input-strength-container {
+            flex-direction: row;
+        }
+        .input-strength {
+            border-bottom: unset;
+            border-left: solid 2px var(--another-grey);
+            max-height: unset;
+            max-width: 400px;
+            padding-left: 1em;
+            padding-bottom: unset;
+            white-space: nowrap;
+            overflow: hidden;
+            transition-duration: 0.5s;
+        }
+        .input-strength-hidden {
+            max-height: unset;
+            max-width: 0;
+            padding: 0;
+            border: white;
+            transition-duration: 0.5s;
+        }
+    }
 label {
     font-style: italic;
 }
@@ -136,24 +223,28 @@ input {
         transition-duration: 0.4s;
     }
     input[type="submit"] {
-        background: #57f092;
+        background: var(--minty-green);
         padding: 0.3em 3em;
     }
     input[type="submit"]:hover {
-        background: #20ad52;
+        background: var(--darker-green);
         transition-duration: 0.2s;
-        cursor:pointer;
+        cursor: pointer;
+    }
+    input[type="submit"]:disabled {
+        background: var(--another-grey);
+        cursor: unset;
     }
     label[for="upload"] {
-        background: #83aeff;
+        background: var(--minty-blue);
         border-radius: 0.3em;
         padding: 0.3em 0.4em;
         margin-top: 50px;
     }
     label[for="upload"]:hover {
-        background: #4764ce;
+        background: var(--darker-blue);
         transition-duration: 0.2s;
-        cursor:pointer;
+        cursor: pointer;
     }
     input[type="file"] {
         display: none;
@@ -194,3 +285,57 @@ input {
 #videoTitle, #commentsTitle {
     margin: 0.3em;
 }
+#photos {
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 40px;
+}
+    .photo-card {
+        /*display:flex;*/
+        /*flex-direction: column;*/
+        /*align-items: center;*/
+        /*box-sizing: border-box;*/
+        /*min-width: 200px;*/
+        max-width: 50%;
+        height: max-content;
+        border-radius: 26px 0 26px 0;
+        background: var(--nice-grey);
+        background-clip: content-box;
+        cursor: pointer;
+        overflow: hidden;
+        transition-duration: 0.5s;
+    }
+    .photo-card-hidden {
+        max-height: unset;
+        max-width: 0;
+        opacity: 0;
+        padding: 0;
+        border: white;
+        transition-duration: 0.5s;
+    }
+    .photo-card p {
+        box-sizing: border-box;
+        max-width: 150px;
+        padding: 0.8em;
+        margin: unset;
+        font-size: 1em;
+        font-style: italic;
+        font-weight: bold;
+    }
+    .photo-card img {
+        border-radius: 0em 0 25px 0;
+        box-sizing: border-box;
+        display: block;
+        /*width: 100%;*/
+        padding: 1em;
+        max-width: 100%;
+    }
+    #photo-count {
+        margin:unset;
+        font-size: 10em;
+        font-style: italic;
+        font-weight: bold;
+
+    }

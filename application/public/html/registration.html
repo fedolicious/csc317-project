@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="../css/style.css">
+    <script defer src="../js/registration.js"></script>
 </head>
 <body>
 <header>
@@ -24,38 +25,56 @@
     <header>
         <h2>Register Account</h2>
     </header>
-    <form class="text-form">
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username">
+    <div class="input-strength-container">
+        <form id="registration-form">
+            <div class="text-input">
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username">
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password">
+                </div>
+                <div>
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword">
+                </div>
+            </div>
+            <div class="checkbox-input">
+                <div>
+                    <input type="checkbox" id="13plus" required>
+                    <label for="13plus">I am 13+ years of age</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="TOS" required>
+                    <label for="TOS">I have read and accepted the <a href="tos.html">Terms of Service and Privacy
+                        Rules</a></label>
+                </div>
+            </div>
+            <div>
+                <input id="registration-submit" type="submit" value="Register" disabled>
+            </div>
+        </form>
+        <div id="registration-input-strength" class="input-strength input-strength-hidden">
+            <p id="name-begins" class="requirement-unmet">Username must begin with a letter</p>
+            <p id="name-alphanum" class="requirement-unmet">Username requires 3+ alphanumeric characters</p>
+            <p id="pass-length" class="requirement-unmet">Password must be 8+ characters</p>
+            <p id="pass-uppercase" class="requirement-unmet">Password requires at least one capital letter</p>
+            <p id="pass-number" class="requirement-unmet">Password requires at least one digit</p>
+            <p id="pass-special" class="requirement-unmet">Password requires at least one of /*-+!@#$^&~[]</p>
+            <p id="pass-confirm" class="requirement-unmet">Password must be the same as confirm password</p>
+            <div>
+                <p>Password Strength:</p>
+                <p id="strength-description">Pathetic</p>
+            </div>
+            <span><span id="progress"></span></span>
         </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email">
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password">
-        </div>
-        <div>
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword">
-        </div>
-    </form>
-    <form class="checkbox-form">
-        <div>
-            <input type="checkbox" id="13plus">
-            <label for="13plus">I am 13+ years of age</label>
-        </div>
-        <div>
-            <input type="checkbox" id="TOS">
-            <label for="TOS">I have read and accepted the <a href="tos.html">Terms of Service and Privacy
-                Rules</a></label>
-        </div>
-    </form>
-    <form>
-        <input type="submit" value="Register">
-    </form>
+    </div>
 </main>
 <footer>Alfred Thompson (922762422) &copy; 2023</footer>
 </body>
