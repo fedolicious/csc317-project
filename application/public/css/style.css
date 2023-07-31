@@ -26,6 +26,7 @@ form {
 }
 h1 {
     text-align: center;
+    margin: unset;
 }
 h2 {
     margin-top: 50px;
@@ -339,3 +340,10 @@ input {
         font-weight: bold;
 
     }
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2em;
+}
