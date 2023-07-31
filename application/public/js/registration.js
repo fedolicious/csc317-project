@@ -50,7 +50,7 @@ document.getElementById("confirmPassword").addEventListener("input", function(ev
 })
 //PASSWORD STRENGTH
 const strengthStrings = ["Pathetic","Still Pretty Bad","Better","Actually Pretty Good","Near Perfection","GODLIKE"];
-const strengthColours = ["red","orange","var(--minty-green)","var(--minty-blue)","#9f41d1","#ffff52"];
+const strengthColours = ["red","orange","var(--minty-green)","var(--minty-blue)","#9f41d1","#FFCC00"];
 updateStrength();
 function updateStrength() {
     document.getElementById("strength-description").textContent = strengthStrings[passwordStrength];

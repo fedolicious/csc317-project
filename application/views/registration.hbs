@@ -3,38 +3,38 @@
         <h2>Register Account</h2>
     </header>
     <div class="input-strength-container">
-        <form id="registration-form">
+        <form id="registration-form" action="/users/registration" method="post" enctype="application/x-www-form-urlencoded">
             <div class="text-input">
                 <div>
                     <label for="email">Email:</label>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div>
                     <label for="username">Username:</label>
-                    <input type="text" id="username">
+                    <input type="text" id="username" name="name">
                 </div>
                 <div>
                     <label for="password">Password:</label>
-                    <input type="password" id="password">
+                    <input type="password" id="password" name="password">
                 </div>
                 <div>
                     <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword">
+                    <input type="password" id="confirmPassword" name="confirmPassword">
                 </div>
             </div>
             <div class="checkbox-input">
                 <div>
-                    <input type="checkbox" id="13plus" required>
+                    <input type="checkbox" id="13plus" name="ageCheck" required>
                     <label for="13plus">I am 13+ years of age</label>
                 </div>
                 <div>
-                    <input type="checkbox" id="TOS" required>
+                    <input type="checkbox" id="TOS" name="tosCheck" required>
                     <label for="TOS">I have read and accepted the <a href="tos.html">Terms of Service and Privacy
                         Rules</a></label>
                 </div>
             </div>
             <div>
-                <input id="registration-submit" type="submit" value="Register" disabled>
+                <input id="registration-submit" type="submit" value="Register" disabledZZZ>
             </div>
         </form>
         <div id="registration-input-strength" class="input-strength input-strength-hidden">
