@@ -1,6 +1,7 @@
 var pathToFFMPEG = require("ffmpeg-static");
 var promisify = require('util').promisify;
 var exec = promisify(require("child_process").exec);
+const database = require("../config/database");
 module.exports = {
     makeThumbnail: async function (req, res, next) {
         if (!req.file) {
@@ -17,4 +18,23 @@ module.exports = {
             }
         }
     },
+    getPostById: async function(req,res,next) {
+        const {id} = req.params;
+        try {
+            let [result,_] = await database.execute(`select p.id,p.title,p.description,p.video,p.createdAt,u.username
+            from posts p join users u on fk_userId=u.id where p.id=?;`,[id]);
+            const post = result[0];
+            if(!post) {
+                req.flash("error","post not found");
+                return req.session.save(function(err) {
+                    if(err) { next(err) }
+                    return res.redirect("/");
+                });
+            }
+            res.locals.post = post;
+            next();
+        }catch(err) {
+            next(err);
+        }
+    }
 }

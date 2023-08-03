@@ -18,9 +18,6 @@ router.get("/postvideo", isLoggedIn, function(req, res, next) {
 router.get("/registration", function(req, res, next) {
     res.render("registration", {title: "Register", js: ["registration.js"]});
 });
-router.get("/viewpost/:id(\\d+)", function(req, res, next) {
-    res.render("viewpost", {title: "View Post"});
-});
 
 module.exports = router;
 
@@ -33,8 +30,8 @@ let sqlPool = mysql.createPool({
 }).promise();
 async function runSQL() {
     try {
-        let [results, _] = await sqlPool.query(`select 1+1`);
-        console.log(results);
+        let [result, _] = await sqlPool.query(`select 1+1`);
+        console.log(result);
     } catch (err) {
         console.log(err);
     }

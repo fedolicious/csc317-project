@@ -1,13 +1,15 @@
 <main>
+    {{log this}}
     <div id="videoElements">
         <video controls id="videoPlayer">
-            <source src="/public/html/placeholder.mp4" type="video/mp4">
+            <source src="/{{post.video}}" type="video/mp4">
         </video>
         <header>
-            <h2 id="videoTitle">Lorem Ipsum Dolor</h2>
+            <h2 id="videoTitle">{{post.title}}</h2>
         </header>
-        <div id="videoAuthor">by John Doe</div>
-        <div id="videoDate">12/12/2012</div>
+        <div id="videoAuthor">by {{post.username}}</div>
+        <div id="videoDate">{{formatDateString post.createdAt}}</div>
+        <div id="videoDescription">{{post.description}}</div>
     </div>
     <div id="commentElements">
         <h3 id="commentsTitle">Comments</h3>
