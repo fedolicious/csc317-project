@@ -2,29 +2,29 @@
     <header>
         <h2>Post a Video</h2>
     </header>
-    <form>
+    <form action="/posts/create" method="post" enctype="multipart/form-data">
         <div class="text-input">
             <div>
                 <label for="title">Video Title:</label>
-                <input type="text" id="title">
+                <input type="text" id="title" name="title" required>
             </div>
             <div>
                 <label for="desc">Video Description:</label>
-                <input type="text" id="desc">
+                <input type="text" id="desc" name="description" required>
             </div>
         </div>
         <div class="file-input">
-            <label for="upload">Select Video File</label>
-            <input type="file" id="upload">
+            <label for="upload" class="blueButton">Select Video File</label>
+            <input type="file" id="upload" name="uploadVideo" required>
         </div>
         <div class="checkbox-input">
             <div>
-                <input type="checkbox" id="TOS">
-                <label for="TOS">I have read and accepted the <a href="policy.html">Acceptable Use Policy</a></label>
+                <input type="checkbox" id="TOS" required>
+                <label for="TOS" >I have read and accepted the <a href="policy.html">Acceptable Use Policy</a></label>
             </div>
         </div>
         <div class="submit-form">
-            <input type="submit" value="Post Video">
+            <input type="submit" class="green-button" value="Post Video">
         </div>
     </form>
 </main>

@@ -1,4 +1,3 @@
-
 require('dotenv').config();
 const createError = require("http-errors");
 const express = require("express");
@@ -7,10 +6,15 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const handlebars = require("express-handlebars");
+const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
+const flash = require("express-flash");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-
+const postsRouter = require("./routes/posts");
 const app = express();
+const sessionStore = new MySQLStore({},require("./config/database"));
+
 
 app.engine(
   "hbs",
@@ -19,7 +23,11 @@ app.engine(
     partialsDir: path.join(__dirname, "views/partials"), // where to look for partials
     extname: ".hbs", //expected file extension for handlebars files
     defaultLayout: "layout", //default layout for app, general template for all pages in app
-    helpers: {}, //adding new helpers to handlebars for extra functionality
+    helpers: {
+        isEmpty: function(obj){
+            return !(obj && obj.constructor === Object && Object.keys(obj).length > 0);
+        }
+    } //adding new helpers to handlebars for extra functionality
   })
 );
 
@@ -27,17 +35,37 @@ app.engine(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 
-
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-
+app.use(cookieParser("cookie_parser_super_secret"));
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use("/public", express.static(path.join(__dirname, "public")));
+app.use(session({
+    key: 'session_cookie_name',
+    secret: 'cookie_parser_super_secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure:false,
+        httpOnly: true
+    }
+}));
+app.use(flash());
+app.use(function(req, res, next) {
+    // console.log(req.session);
+    // console.log(res.locals);
+    if(req.session.user) {
+        res.locals.isLoggedIn = true;
+        res.locals.user = req.session.user;
+    }
+    next();
+});
 
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
+app.use("/posts", postsRouter);
 
 
 /**

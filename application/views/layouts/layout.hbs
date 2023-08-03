@@ -13,6 +13,9 @@
     <body>
         {{> header}}
         {{> navbar}}
+        {{#unless (isEmpty this.messages)}}
+        {{> flashmsg this}}
+        {{/unless}}
         {{{body}}}
         {{> footer}}
     </body>

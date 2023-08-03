@@ -31,7 +31,7 @@ h1 {
 h2 {
     margin-top: 50px;
 }
-nav li a, input[type="submit"], label[for="upload"] { /*normal text*/
+nav li a, .green-button, .blueButton { /*normal text*/
     color: white;
     text-decoration: none;
     font-size: 1.5em;
@@ -215,7 +215,7 @@ input {
         outline: 3px solid lightsalmon;
         transition-duration: 0.2s;
     }
-    input[type="submit"], label[for="upload"] {
+    .green-button, .blueButton {
         align-items: center;
         outline: revert;
         border: none;
@@ -223,26 +223,26 @@ input {
         margin-top:30px;
         transition-duration: 0.4s;
     }
-    input[type="submit"] {
+    .green-button {
         background: var(--minty-green);
         padding: 0.3em 3em;
     }
-    input[type="submit"]:hover {
+    .green-button:hover {
         background: var(--darker-green);
         transition-duration: 0.2s;
         cursor: pointer;
     }
-    input[type="submit"]:disabled {
+    .green-button:disabled {
         background: var(--another-grey);
         cursor: unset;
     }
-    label[for="upload"] {
+    .blueButton {
         background: var(--minty-blue);
         border-radius: 0.3em;
         padding: 0.3em 0.4em;
         margin-top: 50px;
     }
-    label[for="upload"]:hover {
+    .blueButton:hover {
         background: var(--darker-blue);
         transition-duration: 0.2s;
         cursor: pointer;

@@ -6,7 +6,7 @@ fetch("https://jsonplaceholder.typicode.com/albums/2/photos").then(function(resp
     let ExtraHTML = "";
     data.forEach(function(element) {
         ExtraHTML += `<div class="photo-card">
-                          <p class=>${element.title}</p>
+                          <p>${element.title}</p>
                           <img src="${element.thumbnailUrl}" alt="placeholder photo">
                       </div>`;
         photoCount++;

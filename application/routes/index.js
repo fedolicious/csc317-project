@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const mysql = require("mysql2");
+const {isLoggedIn} = require("../middleware/auth");
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -8,11 +11,12 @@ router.get('/', function(req, res, next) {
 router.get("/login", function(req, res, next) {
     res.render("login", {title: 'Log In'});
 });
-router.get("/postvideo", function(req, res, next) {
+
+router.get("/postvideo", isLoggedIn, function(req, res, next) {
     res.render("postvideo", {title: "Post Video"});
 });
 router.get("/registration", function(req, res, next) {
-    res.render("registration", {title: "Register", js: [/*"registration.js"*/]});
+    res.render("registration", {title: "Register", js: ["registration.js"]});
 });
 router.get("/viewpost/:id(\\d+)", function(req, res, next) {
     res.render("viewpost", {title: "View Post"});
@@ -21,7 +25,6 @@ router.get("/viewpost/:id(\\d+)", function(req, res, next) {
 module.exports = router;
 
 //database stuff
-const mysql = require("mysql2");
 let sqlPool = mysql.createPool({
     host: "localhost",
     user: "root",

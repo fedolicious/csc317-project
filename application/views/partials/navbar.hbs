@@ -1,9 +1,15 @@
+
 <nav>
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/login">Log In</a></li>
-        <li><a href="/registration">Register</a></li>
+        {{#if isLoggedIn}}
+<!--            <li><a href="/users/logout">Log Out</a></li>-->
+        {{else}}
+            <li><a href="/login">Log In</a></li>
+            <li><a href="/registration">Register</a></li>
+        {{/if}}
         <li><a href="/postvideo">Post Videos</a></li>
         <li><a href="/viewpost/0">View Posts</a></li>
     </ul>
 </nav>
+<!--<p>Hello {{ name }}, Welcome to {{title}}</p>-->
