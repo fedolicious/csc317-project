@@ -3,13 +3,31 @@
     <ul>
         <li><a href="/">Home</a></li>
         {{#if isLoggedIn}}
-<!--            <li><a href="/users/logout">Log Out</a></li>-->
+{{!--            <li><a href="/users/logout">Log Out</a></li>--}}
         {{else}}
             <li><a href="/login">Log In</a></li>
             <li><a href="/registration">Register</a></li>
         {{/if}}
         <li><a href="/postvideo">Post Videos</a></li>
-        <li><a href="/posts/0">View Posts</a></li>
+        <li>
+            <form action="/posts/search" method="get">
+                <input type="text" id="searchBar" name="key" value={{searchValue}}>
+                <input type="submit" value="View Posts" id="searchButton">
+            </form>
+        </li>
     </ul>
 </nav>
-<!--<p>Hello {{ name }}, Welcome to {{title}}</p>-->
+<script>
+    // const searchButton = document.getElementById("searchButton");
+    // if(searchButton) {
+    //     searchButton.addEventListener("click", function(event) {
+    //         const searchText = document.getElementById("searchBar").value;
+    //         if(!searchText) { return; }
+    //         const searchUrl = `/posts/search?key=${searchText}`;
+    //         fetch(searchUrl).then((resp) => resp.json()).then((data) => {
+    //             console.log(data);
+    //         });
+    //     });
+    // }
+</script>
+{{!--<p>Hello {{ name }}, Welcome to {{title}}</p>--}}

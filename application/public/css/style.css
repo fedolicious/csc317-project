@@ -248,7 +248,7 @@ input {
         cursor: pointer;
     }
     input[type="file"] {
-        display: none;
+        /*display: none;*/
     }
 #videoElements {
     display:flex;

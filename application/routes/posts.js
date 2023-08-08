@@ -47,4 +47,32 @@ router.post("/create", isLoggedIn, upload.single("uploadVideo"), makeThumbnail, 
 router.get("/:id(\\d+)", getPostById, function(req, res, next) {
     res.render("viewpost", {title: "View Post"});
 });
+router.get("/search", async function(req, res, next) {
+    let {key} = req.query;
+    const searchValue = `%${key}%`;
+    try {
+        let [result, _] = await database.execute(`select id, title, description, thumbnail,
+        concat_ws(" ", title, description) as haystack from posts having haystack like ?;`, [searchValue]);
+        // return res.status(200).json(result.length);
+        if(result && result.length > 0) {
+            res.locals.count = result.length;
+            res.locals.results = result;
+            res.locals.searchValue = key;
+            return res.render('index');
+            res.status(200).json({
+                count: result.length,
+                result
+            });
+        } else {
+            res.status(200).json({
+                message:"no results",
+                // count: 0,
+                // results: []
+            });
+        }
+        // return res.status.);
+    } catch(err) {
+        next(err);
+    }
+});
 module.exports = router;

@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 const mysql = require("mysql2");
 const {isLoggedIn} = require("../middleware/auth");
+const {getRecentPosts} = require("../middleware/posts");
+const validator = require("validator");
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', getRecentPosts, function(req, res, next) {
     res.render('index', {title: 'Home', name: "Alfred Thompson", js: ["index.js"]});
 });
 router.get("/login", function(req, res, next) {
@@ -16,7 +18,7 @@ router.get("/postvideo", isLoggedIn, function(req, res, next) {
     res.render("postvideo", {title: "Post Video"});
 });
 router.get("/registration", function(req, res, next) {
-    res.render("registration", {title: "Register", js: ["registration.js"]});
+    res.render("registration", {title: "Register"/*, js: ["registration.js"]*/});
 });
 
 module.exports = router;

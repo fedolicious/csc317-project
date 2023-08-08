@@ -1,3 +1,17 @@
+/* REMEMBER TO TEST EVERYTHING BEFORE SUBMITTING
+ *
+ * BUGS
+ * you can upload a file other than a video (e.g. .png) and it will still be accepted
+ * the CSS sucks
+ *
+ * STUFF TO ADD/COMPLETE
+ * need more/better flash messages
+ * comment creation
+ * getCommentsForPostById()
+ * functions in validation.js
+ * TOS.html, policy.html
+ *
+ */
 require('dotenv').config();
 const createError = require("http-errors");
 const express = require("express");
