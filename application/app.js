@@ -6,10 +6,10 @@
  *
  * STUFF TO ADD/COMPLETE
  * need more/better flash messages
- * comment creation
- * getCommentsForPostById()
+ * comment shows up on screen when you type it
  * functions in validation.js
  * TOS.html, policy.html
+ * responding to comments
  *
  */
 require('dotenv').config();
@@ -26,6 +26,7 @@ const flash = require("express-flash");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const postsRouter = require("./routes/posts");
+const commentsRouter = require("./routes/comments");
 const app = express();
 const sessionStore = new MySQLStore({},require("./config/database"));
 
@@ -83,7 +84,7 @@ app.use(function(req, res, next) {
 app.use("/", indexRouter); // route middleware from ./routes/index.js
 app.use("/users", usersRouter); // route middleware from ./routes/users.js
 app.use("/posts", postsRouter);
-
+app.use("/comments", commentsRouter);
 
 /**
  * Catch all route, if we get to here then the 

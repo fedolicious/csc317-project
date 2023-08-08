@@ -38,7 +38,16 @@ module.exports = {
         }
     },
     getCommentsForPostById: async function(req, res, next) {
-        next();
+        const {id} = req.params;
+        try {
+            let [result, _] = await database.execute(`select c.id, c.text, c.createdAt, u.username from comments c
+            join users u on c.fk_userId=u.id where fk_postId=?;`, [id]);
+            res.locals.post.comments = result;
+            next();
+        } catch(err) {
+            next(err);
+        }
+        // next();
     },
     getRecentPosts: async function(req, res, next) {
         next();
