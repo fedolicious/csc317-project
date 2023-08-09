@@ -1,5 +1,5 @@
 <main>
-{{!--    {{log this}}--}}
+    {{log post.comments}}
     <div id="videoElements">
         <video controls id="videoPlayer">
             <source src="/{{post.video}}" type="video/mp4">
@@ -16,25 +16,10 @@
             <textarea id="commentMsg" name="key"></textarea>
             <input type="submit" value="Comment" id="commentButton" data-postid="{{post.id}}" data-commentid="null"{{!--"{{this.id}}"--}}>
         <ul id="commentsList">
-            <div id="message-18" class="comment">
-                <strong class="comment-author">passwordIsA1!00000</strong>
-                <span class="comment-date">Aug 8, 2023, 5:14:49 PM</span>
-                <div class="comment-text">this will fail!!</div>
-            </div>
+            {{!--ADD COMMENTS WITH JAVACSRIPT --}}
             {{#each post.comments}}
-                <li class="commentMessage">
-                    <p>{{this.username}}:</p>
-                    <p>{{this.text}}</p>
-                    <p>{{formatDateString this.createdAt}}</p>
-                </li>
-{{!--                <form action="/posts/search" method="get">--}}
-{{!--                    <input type="text" id="commentMsg" name="key">--}}
-{{!--                    <input type="submit" value="Reply" id="commentButton">--}}
-{{!--                </form>--}}
+                {{> comment}}
             {{/each}}
-{{!--            <li class="commentMessage"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p></li>--}}
-{{!--            <li class="commentMessage"><p>another example comment</p></li>--}}
-{{!--            <li class="commentMessage"><p>very cool!</p></li>--}}
         </ul>
     </div>
     <form>

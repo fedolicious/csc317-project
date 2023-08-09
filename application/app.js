@@ -2,11 +2,11 @@
  * CHECK EVERY ERROR
  *
  * BUGS
- * you can upload a file other than a video (e.g. .png) and it will still be accepted
  * the CSS sucks
  * you can spam comments ???
  * you can (probably) make an empty comment
  * comments are in the wrong order (newest should be top)
+ * tabbing looks weird for blue/green buttons
  *
  * STUFF TO ADD/COMPLETE
  * need more/better flash messages
@@ -16,7 +16,9 @@
  * responding to comments
  * comment formatting sucks
  * client side comments look wrong
- *
+ * video description should be a big text box
+ * posts on home page
+ * send comment by pressing enter
  */
 require('dotenv').config();
 const createError = require("http-errors");

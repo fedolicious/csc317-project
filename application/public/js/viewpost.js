@@ -1,3 +1,4 @@
+//POSTING COMMENTS
 function buildCommentDiv(data) {
     const dateString = new Date().toLocaleString("en-us", {
         timeStyle: "medium",
@@ -18,8 +19,6 @@ function buildCommentDiv(data) {
     divComment.append(usernametag, dateSpan, commentText);
     return divComment;
 }
-
-
 const commentsList = document.getElementById("commentsList");
 const commentButton = document.getElementById("commentButton");
 let commentTextArea = document.getElementById("commentMsg");
@@ -63,4 +62,28 @@ if(commentTextArea) {
             console.log("send");
         }
     })
+}
+
+//SHOWING/HIDING REPLY BOX
+const replyButtons = document.getElementsByClassName("commentReply");
+let lastReplyBox;
+for(let i = 0; i < replyButtons.length; i++) {
+    replyButtons[i].addEventListener("click", function(event){
+        if(lastReplyBox) {
+            lastReplyBox.classList.add("replyContent-hidden");
+            let children = lastReplyBox.children;
+            for(let j = 0; j < children.length; j++) {
+                children[j].setAttribute("tabIndex",-1);
+            }
+            children.getElementById("replyMsg").text
+        }
+
+        lastReplyBox = event.target.parentElement.getElementsByClassName("replyContent")[0];
+
+        lastReplyBox.classList.remove("replyContent-hidden");
+        let children = lastReplyBox.children;
+        for(let j = 0; j < children.length; j++) {
+            children[j].setAttribute("tabIndex",0);
+        }
+    });
 }

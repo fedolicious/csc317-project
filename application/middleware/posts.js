@@ -40,8 +40,27 @@ module.exports = {
     getCommentsForPostById: async function(req, res, next) {
         const {id} = req.params;
         try {
-            let [result, _] = await database.execute(`select c.id, c.text, c.createdAt, u.username from comments c
-            join users u on c.fk_userId=u.id where fk_postId=?;`, [id]);
+            //get comments
+            let [result, _] = await database.execute(`select c.id, c.text, c.createdAt, u.username, c.fk_parentComment from comments c
+            join users u on c.fk_userId=u.id where fk_postId=? /*order by c.id asc*/;`, [id]);
+
+            //put comments into tree structure
+            result.forEach(elt => elt.children=[]);
+            result.forEach(elt => {
+                if(elt.fk_parentComment === null) { return; }
+                //should be changed to a binary search in the future
+                let i = 0;
+                for(;i < elt.length; i++) {
+                    if(result[i].id === elt.fk_parentComment) { break; }
+                }
+                result[i].children.push(elt)
+            });
+            //remove responses to comments from root
+            for(let i = 0; i < result.length; i++) {
+                if(result[i].fk_parentComment === null) { continue; }
+                result.splice(i, 1);
+                i--;
+            }
             res.locals.post.comments = result;
             next();
         } catch(err) {
@@ -51,5 +70,16 @@ module.exports = {
     },
     getRecentPosts: async function(req, res, next) {
         next();
+    },
+    isVideoFile: function(req, res, next) {
+        if(req.file.mimetype.match("video.*")) {
+            next();
+        } else {
+            req.flash("error", "sussy file type");
+            req.session.save(function(err) {
+                if(err) { next(err); }
+                res.redirect("/postvideo");
+            });
+        }
     }
 }

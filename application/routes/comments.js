@@ -4,7 +4,6 @@ const database = require("../config/database");
 var router = express.Router();
 
 router.post("/create", isLoggedInJSON, async function(req, res, next) {
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
     const {postId, commentText} = req.body;
     const {id, username} = req.session.user;
     const parentComment = null;

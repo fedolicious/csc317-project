@@ -1,7 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let multer = require("multer");
-const {makeThumbnail, getPostById, getCommentsForPostById} = require("../middleware/posts");
+const {makeThumbnail, getPostById, getCommentsForPostById, isVideoFile} = require("../middleware/posts");
 const {isLoggedIn} = require("../middleware/auth");
 const database = require("../config/database");
 
@@ -18,8 +18,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/create", isLoggedIn, upload.single("uploadVideo"), makeThumbnail, async function(req, res, next) {
-    const {title, description} = req.body;
+router.post("/create", isLoggedIn, upload.single("uploadVideo"), isVideoFile, makeThumbnail, async function(req, res, next) {
+    let {title, description} = req.body;
+    if(title === "") { title = "Untitled"; }
     const {path, thumbnail} = req.file;
     const {id} = req.session.user;
     try {

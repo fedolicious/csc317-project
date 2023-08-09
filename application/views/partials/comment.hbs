@@ -1,0 +1,27 @@
+
+{{!--<li class="comment">--}}
+{{!--    <p>{{this.username}}:</p>--}}
+{{!--    <p>{{this.text}}</p>--}}
+{{!--    <p>{{formatDateString this.createdAt}}</p>--}}
+{{!--</li>--}}
+{{!--                <form action="/posts/search" method="get">--}}
+{{!--                    <input type="text" id="commentMsg" name="key">--}}
+{{!--                    <input type="submit" value="Reply" id="commentButton">--}}
+{{!--                </form>--}}
+<li id="message-{{this.id}}" class="comment">
+    <div class="commentContent">
+        <strong>{{this.username}}:</strong>
+        <span>{{formatDateString this.createdAt}}</span>
+        <div>{{this.text}}</div>
+        <input type="submit" value="Reply" class="commentReply" id="reply-{{this.id}}">
+        <div class="replyContent replyContent-hidden">
+            <textarea name="key" tabindex="-1" id="replyMsg"></textarea>
+            <input type="submit" value="Comment" tabindex="-1" {{!-- data-commentid="{{this.id}}"--}}>
+        </div>
+    </div>
+    <ul>
+    {{#each this.children}}
+        {{> comment}}
+    {{/each}}
+    </ul>
+</li>

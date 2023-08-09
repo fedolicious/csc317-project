@@ -264,24 +264,71 @@ input {
         margin-left: 0.5em;
     }
 #commentElements {
-    background: var(--nice-grey);
+    padding: 2em;
+    box-sizing: border-box;
     width: 100%;
 }
-    #commentElements ul {
+    #commentElements>ul {
         display:flex;
         flex-direction: column;
         align-items: center;
     }
-    .commentMessage {
+    .comment {
         width: 90%;
-        border-radius: 1em;
-        background: #cecece;
-        padding: 1em;
+        /*border-radius: 1em;*/
+    }
+    .comment:not(#commentsList >*) {
+        width: calc(100% - 1em);
+        box-sizing: border-box;
+        margin-left:1em;
+        border-left: lightgray solid;
+        padding: 1em 0em 1em 1em;
         margin-bottom: 0.3em;
     }
-    .commentMessage p {
-        margin:unset;
-        text-align: justify;
+    .commentContent {
+        margin-bottom: 0.3em;
+        padding: 0.4em;
+        border-radius: 1em;
+        transition-duration: 0.4s;
+    }
+    .commentContent>.replyContent {
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .commentContent:hover {
+        background: var(--nice-grey);
+        transition-duration: 0.4s;
+    }
+    .comment>div>strong {
+        color:var(--salmon);
+        font-style: italic;
+    }
+    .comment>div>span {
+        font-style: italic;
+    }
+    .comment>div>div {
+        margin-top:0.4em;
+    }
+    .replyContent-container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+    .replyContent {
+        /*border-bottom: solid 2px var(--another-grey);*/
+        max-height: 90px;
+        padding-bottom: 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        transition-duration: 0.3s;
+    }
+    .replyContent-hidden {
+        max-height: 0;
+        padding: 0;
+        /*border: white;*/
+        /*transition-duration: 1s;*/
+        /*animation-timing-function:linear;*/
     }
 #videoTitle, #commentsTitle {
     margin: 0.3em;
