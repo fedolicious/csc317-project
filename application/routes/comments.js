@@ -13,7 +13,7 @@ router.post("/create", isLoggedInJSON, async function(req, res, next) {
         let [result,_] = await database.execute(`insert into comments (fk_userId, text, fk_postId, fk_parentComment)
         VALUES (?,?,?,?);`,[id,commentText,postId,parentComment]);
         if(result && result.affectedRows) {
-            return res.status(201).json({status:"succss",statusCode:1,
+            return res.status(201).json({status:"success",statusCode:1,
                 commentText,
                 username,
                 parentComment,

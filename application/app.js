@@ -1,8 +1,12 @@
 /* REMEMBER TO TEST EVERYTHING BEFORE SUBMITTING
+ * CHECK EVERY ERROR
  *
  * BUGS
  * you can upload a file other than a video (e.g. .png) and it will still be accepted
  * the CSS sucks
+ * you can spam comments ???
+ * you can (probably) make an empty comment
+ * comments are in the wrong order (newest should be top)
  *
  * STUFF TO ADD/COMPLETE
  * need more/better flash messages
@@ -10,6 +14,8 @@
  * functions in validation.js
  * TOS.html, policy.html
  * responding to comments
+ * comment formatting sucks
+ * client side comments look wrong
  *
  */
 require('dotenv').config();

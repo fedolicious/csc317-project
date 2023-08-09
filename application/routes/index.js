@@ -18,7 +18,7 @@ router.get("/postvideo", isLoggedIn, function(req, res, next) {
     res.render("postvideo", {title: "Post Video"});
 });
 router.get("/registration", function(req, res, next) {
-    res.render("registration", {title: "Register"/*, js: ["registration.js"]*/});
+    res.render("registration", {title: "Register", js: ["registration.js"]});
 });
 
 module.exports = router;

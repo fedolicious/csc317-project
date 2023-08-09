@@ -45,7 +45,7 @@ router.post("/create", isLoggedIn, upload.single("uploadVideo"), makeThumbnail, 
     res.end();
 });
 router.get("/:id(\\d+)", getPostById, getCommentsForPostById, function(req, res, next) {
-    res.render("viewpost", {title: "View Post"});
+    res.render("viewpost", {title: "View Post", js: ["viewpost.js"]});
 });
 router.get("/search", async function(req, res, next) {
     let {key} = req.query;

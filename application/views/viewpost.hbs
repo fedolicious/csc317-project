@@ -15,12 +15,17 @@
         <h3 id="commentsTitle">Comments</h3>
             <textarea id="commentMsg" name="key"></textarea>
             <input type="submit" value="Comment" id="commentButton" data-postid="{{post.id}}" data-commentid="null"{{!--"{{this.id}}"--}}>
-        <ul>
+        <ul id="commentsList">
+            <div id="message-18" class="comment">
+                <strong class="comment-author">passwordIsA1!00000</strong>
+                <span class="comment-date">Aug 8, 2023, 5:14:49 PM</span>
+                <div class="comment-text">this will fail!!</div>
+            </div>
             {{#each post.comments}}
                 <li class="commentMessage">
                     <p>{{this.username}}:</p>
                     <p>{{this.text}}</p>
-                    <p>{{this.createdAt}}</p>
+                    <p>{{formatDateString this.createdAt}}</p>
                 </li>
 {{!--                <form action="/posts/search" method="get">--}}
 {{!--                    <input type="text" id="commentMsg" name="key">--}}
@@ -36,32 +41,3 @@
 
     </form>
 </main>
-<script>
-    const commentsList= document.getElementById("commentElements").getElementsByTagName("ul");
-    const commentButton = document.getElementById("commentButton");
-    const commentTextArea = document.getElementById("commentMsg");
-    if(commentButton) {
-        commentButton.addEventListener("click", function(event){
-            event.preventDefault();
-            const commentText = commentTextArea.value;
-            const postId = event.currentTarget.dataset.postid;
-
-            const payLoad = {
-                postId,
-                commentText
-            };
-            const fetchOptions = {
-                method: "POST",
-                headers: {
-                    "Content-Type":"application/json"
-                },
-                body : JSON.stringify(payLoad)
-            };
-            fetch("/comments/create", fetchOptions)
-            .then((resp) => resp.json())
-            .then((data) => console.log(data))
-            .catch(err => console.error(err));
-            console.log(fetchOptions);
-        });
-    }
-</script>
