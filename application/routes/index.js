@@ -20,6 +20,12 @@ router.get("/postvideo", isLoggedIn, function(req, res, next) {
 router.get("/registration", function(req, res, next) {
     res.render("registration", {title: "Register", js: ["registration.js"]});
 });
+router.get("/tos", function(req, res, next) {
+    res.render("tos", {title: "Terms of Service"});
+});
+router.get("/policy", function(req, res, next) {
+    res.render("policy", {title: "Acceptable Use Policy"});
+});
 
 module.exports = router;
 

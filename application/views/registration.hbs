@@ -2,6 +2,9 @@
     <header>
         <h2>Register Account</h2>
     </header>
+    <div id="flashMsg">
+        {{> flashmsg this}}
+    </div>
     <div class="input-strength-container">
         <form id="registration-form" action="/users/registration" method="post" enctype="application/x-www-form-urlencoded">
             <div class="text-input">
@@ -29,12 +32,12 @@
                 </div>
                 <div>
                     <input type="checkbox" id="TOS" name="tosCheck" required>
-                    <label for="TOS">I have read and accepted the <a href="tos.html">Terms of Service and Privacy
+                    <label for="TOS">I have read and accepted the <a href="/tos">Terms of Service and Privacy
                         Rules</a></label>
                 </div>
             </div>
             <div>
-                <input id="registration-submit" type="submit" class="green-button" value="Register" {{!--disabled--}}>
+                <input id="registration-submit" type="submit" class="green-button" value="Register" disabled>
             </div>
         </form>
         <div id="registration-input-strength" class="input-strength input-strength-hidden">

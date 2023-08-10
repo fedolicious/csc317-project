@@ -66,7 +66,7 @@ for(i = 0; i < 2*ids.length; i++) {
 }
 //REGISTRATION SUBMISSION
 document.getElementById("registration-form").addEventListener("submit", function(event) {
-    console.log("yoyoyo!");
+    console.log(totalStrength);
     if(totalStrength >= 7){
         event.target.submit();
         // document.getElementById("registration-submit")

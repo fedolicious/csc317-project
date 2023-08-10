@@ -1,3 +1,4 @@
+//PHOTOS
 let photoCount = 0;
 fetch("https://jsonplaceholder.typicode.com/albums/2/photos").then(function(response) {
     return response.json();

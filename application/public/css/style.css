@@ -1,5 +1,5 @@
 :root {
-    --nice-grey:#f1f1f1;
+    --nice-grey: #eaeaea;
     --another-grey:#959595;
     --minty-green:#57f092;
     --darker-green:#20ad52;
@@ -31,7 +31,7 @@ h1 {
 h2 {
     margin-top: 50px;
 }
-nav li a, .green-button, .blueButton { /*normal text*/
+nav li a, .green-button, .blueButton, #searchButton, #searchBar { /*normal text*/
     color: white;
     text-decoration: none;
     font-size: 1.5em;
@@ -55,9 +55,7 @@ nav ul {
 }
 @media only screen and (min-width: 800px) {
     nav ul {
-        display: grid;
         grid-auto-flow: column;
-        margin:unset;
         grid-template-columns: unset;
     }
 }
@@ -65,7 +63,7 @@ nav li {
     justify-content: center;
     align-items: center;
 }
-nav li a {
+nav li a, #searchButton {
     margin:auto;
     display: block;
     width: 85%;
@@ -78,13 +76,13 @@ nav li a {
     transition-duration: 0.4s;
 }
 @media only screen and (max-width: 800px) {
-    nav li a {
+    nav li a, #searchButton{
         background: var(--salmon);
         border: 2px solid var(--salmon);
         color:white;
     }
 }
-nav li a:hover {
+nav li a:hover, #searchButton:hover {
     background: var(--salmon);
     border: 2px solid var(--salmon);
     color:white;
@@ -97,17 +95,12 @@ footer {
     left:1em;
     height: 2em;
 }
-/*form {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    padding-bottom: 3em;*/
-/*}*/
-/*.submit-form {*/
-/*    justify-content: center;*/
-/*    display: flex;*/
-/*    !*width: max-content;*!*/
-/*}*/
+textarea {
+    resize: none;
+    padding: 1em;
+    border-top-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
 .requirement-unmet {
     font-style: italic;
     margin:unset;
@@ -115,6 +108,13 @@ footer {
 }
 .requirement-met {
     color: var(--darker-green);
+}
+#flashMsg{
+    width: 100%;
+    color: #ff4141;
+    text-align: center;
+    font-weight: bolder;
+    font-style: italic;
 }
 .text-input {
     display: flex;
@@ -168,13 +168,12 @@ footer {
         padding-bottom: 1em;
         white-space: nowrap;
         overflow: hidden;
-        transition-duration: 0.5s;
+        transition-duration: 0.8s;
     }
     .input-strength-hidden {
         max-height: 0;
         padding: 0;
         border: white;
-        transition-duration: 0.5s;
     }
     @media only screen and (min-width: 800px) {
         .input-strength-container {
@@ -189,14 +188,12 @@ footer {
             padding-bottom: unset;
             white-space: nowrap;
             overflow: hidden;
-            transition-duration: 0.5s;
         }
         .input-strength-hidden {
             max-height: unset;
             max-width: 0;
             padding: 0;
             border: white;
-            transition-duration: 0.5s;
         }
     }
 label {
@@ -210,7 +207,6 @@ input {
     border-radius: 2em 2em;
 }
     input:focus {
-        background: unset;
         border: unset;
         outline: 3px solid lightsalmon;
         transition-duration: 0.2s;
@@ -219,13 +215,13 @@ input {
         align-items: center;
         outline: revert;
         border: none;
-        border-radius: 2em 0 2em 0;
         margin-top:30px;
         transition-duration: 0.4s;
     }
     .green-button {
         background: var(--minty-green);
         padding: 0.3em 3em;
+        border-radius: 1.5em 0 1.5em 0;
     }
     .green-button:hover {
         background: var(--darker-green);
@@ -247,21 +243,39 @@ input {
         transition-duration: 0.2s;
         cursor: pointer;
     }
-    input[type="file"] {
-        /*display: none;*/
+    .green-button:focus, .blueButton:focus {
+        outline: revert;
     }
 #videoElements {
     display:flex;
     flex-direction: column;
     margin-top: 2em;
+    width: 100%;
+    align-items: center;
+
 }
     #videoPlayer {
-        width: 100%;
+        background: black;
+        width: 60vw;
         height: auto;
+        max-height: 80vh;
     }
-        #videoTitle, #videoAuthor, #videoDate {
+    #videoTitle, #videoAuthor, #videoDate {
         margin:unset;
-        margin-left: 0.5em;
+    }
+    #descWrapper {
+        margin-top: 1em;
+        box-sizing: border-box;
+        background: var(--nice-grey);
+        border-radius: 1em 0em 1em 0em;
+        padding: 2em;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 60vw;
+    }
+    #descWrapper > * {
+        margin-bottom: 1em;
     }
 #commentElements {
     padding: 2em;
@@ -287,7 +301,7 @@ input {
     .commentContent {
         margin-bottom: 0.3em;
         padding: 0.4em;
-        border-radius: 1em;
+        border-radius: 1em 0em 1em 0em;
         transition-duration: 0.4s;
     }
     .commentContent>.replyContent {
@@ -308,6 +322,7 @@ input {
     }
     .commentBody {
         margin-top:0.4em;
+        white-space: pre-wrap;
     }
     .replyContent-container {
         display: flex;
@@ -346,14 +361,11 @@ input {
         width: 100%;
         box-sizing: border-box;
     }
-.childComments {
-    display:flex;
-    flex-direction: column;
-}
-#videoTitle, #commentsTitle {
-    margin: 0.3em;
-}
-#photos {
+    .childComments {
+        display:flex;
+        flex-direction: column;
+    }
+#photos, #recentPosts {
     display:flex;
     flex-wrap: wrap;
     align-items: center;
@@ -383,10 +395,14 @@ input {
         border: white;
         transition-duration: 0.5s;
     }
+    .photo-card a {
+        color:inherit;
+        text-decoration: inherit;
+    }
     .photo-card p {
         box-sizing: border-box;
         max-width: 150px;
-        padding: 0.8em;
+        padding: 0.8em 0.8em 0em;
         margin: unset;
         font-size: 1em;
         font-style: italic;
@@ -414,3 +430,33 @@ header {
     align-items: center;
     margin: 2em;
 }
+#search {
+    align-items: center;
+}
+    #search>form {
+        display:flex;
+        flex-direction: row;
+        padding:unset;
+        margin:auto;
+        width: 90%;
+        /*padding: 0.4em;*/
+        background: white;
+        color:black;
+        text-align: center;
+        border-radius: 1em;
+        transition-duration: 0.4s;
+
+    }
+    #searchBar {
+        width: 100%;
+        display: block;
+        padding: 0.4em;
+        background: white;
+        border: 2px solid lightgray;
+        color:black;
+        border-radius: 1em;
+        transition-duration: 0.4s;
+    }
+    #searchButton {
+        width:200px;
+    }

@@ -1,4 +1,4 @@
-
+{{log searchValue}}
 <nav>
     <ul>
         <li><a href="/">Home</a></li>
@@ -9,10 +9,10 @@
             <li><a href="/registration">Register</a></li>
         {{/if}}
         <li><a href="/postvideo">Post Videos</a></li>
-        <li>
+        <li id="search">
             <form action="/posts/search" method="get">
-                <input type="text" id="searchBar" name="key" value={{searchValue}}>
-                <input type="submit" value="View Posts" id="searchButton">
+                <input type="text" id="searchBar" name="key" placeholder="Search for Videos" value="{{searchValue}}">
+                <input type="submit" value="Search" id="searchButton">
             </form>
         </li>
     </ul>

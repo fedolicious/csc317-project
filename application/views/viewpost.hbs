@@ -5,17 +5,17 @@
         <video controls id="videoPlayer">
             <source src="/{{post.video}}" type="video/mp4">
         </video>
-        <header>
+        <div id="descWrapper">
             <h2 id="videoTitle">{{post.title}}</h2>
-        </header>
-        <div id="videoAuthor">by {{post.username}}</div>
-        <div id="videoDate">{{formatDateString post.createdAt "medium" "short"}}</div>
-        <div id="videoDescription">{{post.description}}</div>
+            <div id="videoAuthor">by {{post.username}}</div>
+            <div id="videoDate">{{formatDateString post.createdAt "medium" "short"}}</div>
+            <div id="videoDescription">{{post.description}}</div>
+        </div>
     </div>
-    <div id="commentElements">
+    <div id="commentElements" data-postid="{{post.id}}" data-commentid="null">
         <h3 id="commentsTitle">Comments</h3>
-            <textarea id="commentBox" name="key"></textarea>
-            <input type="submit" value="Comment" id="commentButton" data-postid="{{post.id}}" data-commentid="null">
+        <textarea id="commentBox" name="key" rows="5"></textarea>
+        <input type="submit" value="Comment" id="commentButton">
         <ul id="commentsList" class="childComments">
             {{#each post.comments}}
                 {{> comment postId=../post.id}}.

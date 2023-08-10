@@ -25,7 +25,7 @@ module.exports = {
             from posts p join users u on fk_userId=u.id where p.id=?;`,[id]);
             const post = result[0];
             if(!post) {
-                req.flash("error","post not found");
+                req.flash("error","Post not found");
                 return req.session.save(function(err) {
                     if(err) { next(err) }
                     return res.redirect("/");
@@ -42,7 +42,7 @@ module.exports = {
         try {
             //get comments
             let [result, _] = await database.execute(`select c.id, c.text, c.createdAt, u.username, c.fk_parentComment from comments c
-            join users u on c.fk_userId=u.id where fk_postId=? order by c.id desc;`, [id]);
+            join users u on c.fk_userId=u.id where fk_postId=? order by c.createdAt desc;`, [id]);
             //put comments into tree structure
             result.forEach(elt => elt.children=[]);
             result.forEach(elt => {
@@ -69,13 +69,21 @@ module.exports = {
         // next();
     },
     getRecentPosts: async function(req, res, next) {
-        next();
+        try {
+            let [result,_] = await database.execute(`select id, title, description, thumbnail
+            from posts order by createdAt desc limit 3;`);
+            res.locals.results = result;
+            next();
+        }catch(err) {
+            next(err);
+        }
+
     },
     isVideoFile: function(req, res, next) {
-        if(req.file.mimetype.match("video.*")) {
+        if(req.file && req.file.mimetype.match("video.*")) {
             next();
         } else {
-            req.flash("error", "sussy file type");
+            req.flash("error", "Bad file type");
             req.session.save(function(err) {
                 if(err) { next(err); }
                 res.redirect("/postvideo");

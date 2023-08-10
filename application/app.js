@@ -1,17 +1,8 @@
 /* REMEMBER TO TEST EVERYTHING BEFORE SUBMITTING
  * CHECK EVERY ERROR
  *
- * BUGS
- * the CSS sucks
- * you can spam comments ???
- * you can (probably) make an empty comment
- * comments are in the wrong order (newest should be top)
- * tabbing looks weird for blue/green buttons
  *
  * STUFF TO ADD/COMPLETE
- * need more/better flash messages
- * comment shows up on screen when you type it
- * functions in validation.js
  * TOS.html, policy.html
  * responding to comments
  * comment formatting sucks
@@ -35,6 +26,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const postsRouter = require("./routes/posts");
 const commentsRouter = require("./routes/comments");
+const {getRecentPosts} = require("./middleware/posts");
 const app = express();
 const sessionStore = new MySQLStore({},require("./config/database"));
 
@@ -52,7 +44,7 @@ app.engine(
         },
         formatDateString: function(dateString,ts,ds) {
             return new Date(dateString).toLocaleString("en-us",{timeStyle:ts,dateStyle:ds});
-        }
+        },
     } //adding new helpers to handlebars for extra functionality
   })
 );

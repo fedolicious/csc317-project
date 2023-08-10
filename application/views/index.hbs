@@ -1,15 +1,34 @@
-{{log this}}
+{{!--{{log this}}--}}
 <main>
+    {{#if noResults}}
+        <h2>
+            No results for "{{searchValue}}", but check out some new videos
+        </h2>
+    {{/if}}
+    <div id="recentPosts">
+{{!--        {{#if (isEmpty results)}}--}}
+{{!--            {{log this}}--}}
+{{!--        {{else}}--}}
+            {{#each results}}
+                <div class="photo-card">
+                    <a href="/posts/{{id}}">
+                        <p>{{title}}</p>
+                        <img src="/{{thumbnail}}" alt="">
+                    </a>
+                </div>
+            {{/each}}
+{{!--        {{/if}}--}}
+    </div>
     <p id="photo-count"></p>
     <div id="photos">
-        {{#each results}}
-            <div class="photo-card">
-                <a href="/posts/{{id}}">
-                    <p>{{title}}</p>
-                    <img src="/{{thumbnail}}" alt="">
-                </a>
-            </div>
-        {{/each}}
+{{!--        {{#each results}}--}}
+{{!--            <div class="photo-card">--}}
+{{!--                <a href="/posts/{{id}}">--}}
+{{!--                    <p>{{title}}</p>--}}
+{{!--                    <img src="/{{thumbnail}}" alt="">--}}
+{{!--                </a>--}}
+{{!--            </div>--}}
+{{!--        {{/each}}--}}
 {{!--        <div class="photo-card">--}}
 {{!--            <p></p>--}}
 {{!--            <img src="">--}}

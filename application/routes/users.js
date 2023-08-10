@@ -36,9 +36,10 @@ async function(req, res, next) {
 router.post("/login", async function(req, res, next) {
     let {username,password} = req.body;
     try {
-        let [result, _] = await database.execute(`select id, email, username, password from users
-                                                  where username = ?`, [username]);
+        let [result, _] = await database.execute(`
+        select id, email, username, password from users where username = ?`, [username]);
         const user = result[0];
+        console.log(user);
         if(!user || !(await bcrypt.compare(password, user.password))) {
             req.flash("error", `Login failed`);
             req.session.save(function(err) {

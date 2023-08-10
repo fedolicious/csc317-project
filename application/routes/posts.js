@@ -1,7 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let multer = require("multer");
-const {makeThumbnail, getPostById, getCommentsForPostById, isVideoFile} = require("../middleware/posts");
+const {makeThumbnail, getPostById, getCommentsForPostById, isVideoFile, getRecentPosts} = require("../middleware/posts");
 const {isLoggedIn} = require("../middleware/auth");
 const database = require("../config/database");
 
@@ -49,28 +49,41 @@ router.get("/:id(\\d+)", getPostById, getCommentsForPostById, function(req, res,
     res.render("viewpost", {title: "View Post", js: ["viewpost.js"]});
 });
 router.get("/search", async function(req, res, next) {
-    let {key} = req.query;
+    let {key} = req.query
+    const keyTrim = key.trim();
+    if(key!==keyTrim) {
+        return res.redirect(`/posts/search?key=${keyTrim}`);
+    }
+
     const searchValue = `%${key}%`;
     try {
         let [result, _] = await database.execute(`select id, title, description, thumbnail,
         concat_ws(" ", title, description) as haystack from posts having haystack like ?;`, [searchValue]);
         // return res.status(200).json(result.length);
-        if(result && result.length > 0) {
+        if(result) {
             res.locals.count = result.length;
             res.locals.results = result;
             res.locals.searchValue = key;
-            return res.render('index');
-            res.status(200).json({
-                count: result.length,
-                result
-            });
+            res.locals.noResults = res.locals.count === 0;
+            if(res.locals.noResults) {
+                let [result,_] = await database.execute(`select id, title, description, thumbnail
+                from posts order by createdAt desc limit 3;`);
+                res.locals.results = result;
+            }
+            // console.log(res.locals.results);
+            // res.status(200).json({
+            //     count: result.length,
+            //     result
+            // });
         } else {
             res.status(200).json({
-                message:"no results",
+                message:"error",
                 // count: 0,
                 // results: []
             });
         }
+        return res.render('index');
+
         // return res.status.);
     } catch(err) {
         next(err);

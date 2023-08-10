@@ -1,9 +1,8 @@
 <header>
     <h1>Alfred Thompson's Website</h1>
     {{#if isLoggedIn}}
-        <p>Hello {{user.username}}, Welcome to {{title}}</p>
         <form action="/users/logout" method="post">
-            <input type="submit" class="blueButton" value="Log Out">
+            <input type="submit" class="blueButton" value="Log Out of {{user.username}}">
         </form>
     {{/if}}
 </header>
