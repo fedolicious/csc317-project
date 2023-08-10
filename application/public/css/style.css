@@ -281,9 +281,8 @@ input {
         width: calc(100% - 1em);
         box-sizing: border-box;
         margin-left:1em;
-        border-left: lightgray solid;
-        padding: 1em 0em 1em 1em;
-        margin-bottom: 0.3em;
+        border-left: var(--nice-grey) solid 2px;
+        padding: 1em 0em 0em 1em;
     }
     .commentContent {
         margin-bottom: 0.3em;
@@ -296,7 +295,7 @@ input {
         flex-direction: column;
         align-items: flex-start;
     }
-    .commentContent:hover {
+    .commentContent:hover:not(:has(*:hover.replyButton,*:hover.replyCommentButton)) {
         background: var(--nice-grey);
         transition-duration: 0.4s;
     }
@@ -307,7 +306,7 @@ input {
     .comment>div>span {
         font-style: italic;
     }
-    .comment>div>div {
+    .commentBody {
         margin-top:0.4em;
     }
     .replyContent-container {
@@ -316,7 +315,6 @@ input {
         align-items: stretch;
     }
     .replyContent {
-        /*border-bottom: solid 2px var(--another-grey);*/
         max-height: 90px;
         padding-bottom: 1em;
         white-space: nowrap;
@@ -330,6 +328,28 @@ input {
         /*transition-duration: 1s;*/
         /*animation-timing-function:linear;*/
     }
+    .replyButton,.replyCommentButton,#commentButton {
+        background:none;
+        cursor: pointer;
+        border: unset;
+        transition-duration: 0.3s;
+    }
+    .replyButton:hover,.replyCommentButton:hover,#commentButton:hover {
+        background: lightgray;
+        /*background: var(--nice-grey);*/
+    }
+    .replyButton {
+        color: #b0b0b0;
+        font-style: italic
+    }
+    textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+.childComments {
+    display:flex;
+    flex-direction: column;
+}
 #videoTitle, #commentsTitle {
     margin: 0.3em;
 }

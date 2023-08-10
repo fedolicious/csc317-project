@@ -1,5 +1,6 @@
 <main>
-    {{log post.comments}}
+{{!--    {{log post}}--}}
+{{!--    {{log this.post.id}}--}}
     <div id="videoElements">
         <video controls id="videoPlayer">
             <source src="/{{post.video}}" type="video/mp4">
@@ -8,21 +9,17 @@
             <h2 id="videoTitle">{{post.title}}</h2>
         </header>
         <div id="videoAuthor">by {{post.username}}</div>
-        <div id="videoDate">{{formatDateString post.createdAt}}</div>
+        <div id="videoDate">{{formatDateString post.createdAt "medium" "short"}}</div>
         <div id="videoDescription">{{post.description}}</div>
     </div>
     <div id="commentElements">
         <h3 id="commentsTitle">Comments</h3>
-            <textarea id="commentMsg" name="key"></textarea>
-            <input type="submit" value="Comment" id="commentButton" data-postid="{{post.id}}" data-commentid="null"{{!--"{{this.id}}"--}}>
-        <ul id="commentsList">
-            {{!--ADD COMMENTS WITH JAVACSRIPT --}}
+            <textarea id="commentBox" name="key"></textarea>
+            <input type="submit" value="Comment" id="commentButton" data-postid="{{post.id}}" data-commentid="null">
+        <ul id="commentsList" class="childComments">
             {{#each post.comments}}
-                {{> comment}}
+                {{> comment postId=../post.id}}.
             {{/each}}
         </ul>
     </div>
-    <form>
-
-    </form>
 </main>

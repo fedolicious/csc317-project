@@ -42,18 +42,18 @@ module.exports = {
         try {
             //get comments
             let [result, _] = await database.execute(`select c.id, c.text, c.createdAt, u.username, c.fk_parentComment from comments c
-            join users u on c.fk_userId=u.id where fk_postId=? /*order by c.id asc*/;`, [id]);
-
+            join users u on c.fk_userId=u.id where fk_postId=? order by c.id desc;`, [id]);
             //put comments into tree structure
             result.forEach(elt => elt.children=[]);
             result.forEach(elt => {
                 if(elt.fk_parentComment === null) { return; }
                 //should be changed to a binary search in the future
-                let i = 0;
-                for(;i < elt.length; i++) {
-                    if(result[i].id === elt.fk_parentComment) { break; }
+                for(let i = 0; i < result.length; i++) {
+                    if(result[i].id === elt.fk_parentComment) {
+                        result[i].children.push(elt)
+                        break;
+                    }
                 }
-                result[i].children.push(elt)
             });
             //remove responses to comments from root
             for(let i = 0; i < result.length; i++) {

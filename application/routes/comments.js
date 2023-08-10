@@ -4,18 +4,19 @@ const database = require("../config/database");
 var router = express.Router();
 
 router.post("/create", isLoggedInJSON, async function(req, res, next) {
-    const {postId, commentText} = req.body;
+    const {postId, commentText, parentId = null} = req.body;
     const {id, username} = req.session.user;
-    const parentComment = null;
+    // const parentComment = null;
 
     try {
+        console.log({id,commentText,postId,parentComment: parentId});
         let [result,_] = await database.execute(`insert into comments (fk_userId, text, fk_postId, fk_parentComment)
-        VALUES (?,?,?,?);`,[id,commentText,postId,parentComment]);
+        VALUES (?,?,?,?);`,[id,commentText,postId,parentId]);
         if(result && result.affectedRows) {
             return res.status(201).json({status:"success",statusCode:1,
                 commentText,
                 username,
-                parentComment,
+                parentComment: parentId,
                 commentId: result.insertId
             });
         } else {
