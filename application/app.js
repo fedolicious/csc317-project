@@ -1,15 +1,5 @@
 /* REMEMBER TO TEST EVERYTHING BEFORE SUBMITTING
  * CHECK EVERY ERROR
- *
- *
- * STUFF TO ADD/COMPLETE
- * TOS.html, policy.html
- * responding to comments
- * comment formatting sucks
- * client side comments look wrong
- * video description should be a big text box
- * posts on home page
- * send comment by pressing enter
  */
 require('dotenv').config();
 const createError = require("http-errors");

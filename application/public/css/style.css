@@ -277,6 +277,9 @@ input {
     #descWrapper > * {
         margin-bottom: 1em;
     }
+    #videoDescription {
+        white-space: pre-wrap;
+    }
 #commentElements {
     padding: 2em;
     box-sizing: border-box;
@@ -460,3 +463,6 @@ header {
     #searchButton {
         width:200px;
     }
+#PVTextInput {
+    align-items: center;
+}

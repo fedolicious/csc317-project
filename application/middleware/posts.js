@@ -83,7 +83,7 @@ module.exports = {
         if(req.file && req.file.mimetype.match("video.*")) {
             next();
         } else {
-            req.flash("error", "Bad file type");
+            req.flash("error", "Invalid file format");
             req.session.save(function(err) {
                 if(err) { next(err); }
                 res.redirect("/postvideo");

@@ -35,6 +35,7 @@ async function(req, res, next) {
 });
 router.post("/login", async function(req, res, next) {
     let {username,password} = req.body;
+    console.log(req.body);
     try {
         let [result, _] = await database.execute(`
         select id, email, username, password from users where username = ?`, [username]);
@@ -42,34 +43,12 @@ router.post("/login", async function(req, res, next) {
         console.log(user);
         if(!user || !(await bcrypt.compare(password, user.password))) {
             req.flash("error", `Login failed`);
-            req.session.save(function(err) {
-                console.log("B");
+            return req.session.save(function(err) {
                 if(err) { next(err); }
-                console.log("C");
                 return res.redirect("/login");
             });
         }
-        console.log(!user);
-
-        // if(!user) {
-        //     req.flash("error",`Login failed`);
-        //     return res.redirect("/login");
-        // }
-        // if(!(await bcrypt.compare(password,user.password))) {
-        //     req.flash("error","Login failed");
-        //     return res.redirect("/login");
-        // }
-
-        // if(result && result.length !== 1) {
-        //     req.flash("error","Login failed: username ${username} does not exist");
-        //     return res.redirect("/login");
-        // }
-        // if(!(await bcrypt.compare(password,user.password))) {
-        //     req.flash("error","Login failed: incorrect password");
-        //     return res.redirect("/login");
-        // }
-        console.log("logged in successfully");
-        console.log(user);
+        // return res.redirect("/login");
         req.session.user = {
             id: user.id,
             username: user.username,

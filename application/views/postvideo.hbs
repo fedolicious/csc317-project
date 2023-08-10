@@ -6,19 +6,15 @@
         {{> flashmsg this}}
     </div>
     <form action="/posts/create" method="post" enctype="multipart/form-data">
-        <div class="text-input">
-            <div>
-                <label for="title">Video Title:</label>
-                <input type="text" id="title" name="title"  required>
-            </div>
-            <div>
-                <label for="desc">Video Description:</label>
-                <input type="text" id="desc" name="description" required>
-            </div>
+        <div class="text-input" id="PVTextInput">
+            <label for="title">Video Title:</label>
+            <input type="text" id="title" name="title"  required>
+            <label for="desc">Video Description:</label>
+            <textarea type="text" id="desc" name="description" rows="10" cols="40" required></textarea>
         </div>
         <div class="file-input">
-            <label for="upload" class="blueButton">Select Video File</label>
-            <input type="file" id="upload" name="uploadVideo" accept="video/*" required>
+            <label for="upload" class="blueButton" id="uploadLabel">Select Video File</label>
+            <input type="file" id="upload" name="uploadVideo" accept="video/*" required hidden>
         </div>
         <div class="checkbox-input">
             <div>
@@ -31,3 +27,12 @@
         </div>
     </form>
 </main>
+<script>
+document.getElementById("upload").addEventListener( 'change', function(event) {
+    document.getElementById("uploadLabel").innerHTML = event.currentTarget.files[0].name;
+
+    console.log(event.currentTarget.files[0].name);
+    // event.currentTarget.innerHTML = "3";
+
+});
+</script>
