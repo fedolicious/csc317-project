@@ -38,7 +38,7 @@ function hideLastReplyBox() {
         lastReplyBox.classList.add("replyContent-hidden");
         let children = lastReplyBox.children;
         for(let j = 0; j < children.length; j++) {
-            children[j].setAttribute("tabIndex",-1);
+            children[j].setAttribute("tabIndex","-1");
         }
         lastReplyBox.getElementsByClassName("replyBox")[0].value = "";
     }
@@ -53,7 +53,7 @@ for(let i = 0; i < replyButtons.length; i++) {
         //toggle tabbing
         let children = lastReplyBox.children;
         for(let j = 0; j < children.length; j++) {
-            children[j].setAttribute("tabIndex",0);
+            children[j].setAttribute("tabIndex","0");
         }
     });
 }
@@ -61,7 +61,7 @@ function sendComment(commentTextArea,postId,parentId = null) {
     if(parentId === "null") { parentId = null; }
     console.log(`"${commentTextArea.value}, ${postId}, ${parentId}"`);
     let commentText = commentTextArea.value;
-    commentText = commentText.trimRight();
+    commentText = commentText.trimEnd();
     if(commentText === "") { return; }
     const payLoad = {
         postId,

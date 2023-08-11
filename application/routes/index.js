@@ -36,12 +36,12 @@ let sqlPool = mysql.createPool({
     password: "rootPassword",
     database: "csc317db"
 }).promise();
-async function runSQL() {
-    try {
-        let [result, _] = await sqlPool.query(`select 1+1`);
-        console.log(result);
-    } catch (err) {
-        console.log(err);
-    }
-}
-runSQL();
+// async function runSQL() {
+//     try {
+//         let [result, _] = await sqlPool.query(`select 1+1`);
+//         console.log(result);
+//     } catch (err) {
+//         console.log(err);
+//     }
+// }
+// runSQL();

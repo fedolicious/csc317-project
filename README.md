@@ -11,7 +11,7 @@ Please follow the instructions below and fill in the information requested when 
 |               |     Information     |
 |:-------------:|:-------------------:|
 | Student Name  |   Alfred Thompson   |
-| Student ID    |      922762422      |
+|  Student ID   |      922762422      |
 | Student Email | athompson5@sfsu.edu |
 
 

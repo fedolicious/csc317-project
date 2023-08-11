@@ -59,7 +59,7 @@ function updateStrength() {
 }
 //TOGGLE INPUT VALIDATION MENU
 const ids = ["username","password","confirmPassword"];
-for(i = 0; i < 2*ids.length; i++) {
+for(let i = 0; i < 2*ids.length; i++) {
     document.getElementById(ids[i%ids.length]).addEventListener(i%2===0?"focusin":"focusout", function(){
         document.getElementById("registration-input-strength").classList.toggle("input-strength-hidden");
     })
